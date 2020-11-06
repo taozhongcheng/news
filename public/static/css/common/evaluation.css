@@ -1,0 +1,50 @@
+.evaluation__html-pc {
+  border: 1px solid #b7b7b7;
+}
+.evaluation__html-pc-box .evaluation-textbox {
+  padding: 0 8px;
+  box-sizing: border-box;
+  margin: 0 0 9px;
+  width: 100%;
+  height: 66px;
+  line-height: 22px;
+  font-size: 14px;
+  resize: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-image: none;
+  color: #ccc;
+  background-attachment: scroll;
+  border: 0;
+  outline: 0;
+}
+.evaluation__html-pc-bar {
+  line-height: 30px;
+  background: #f8f8f8;
+  padding: 0 0px 0 13px;
+  position: relative;
+}
+.evaluation__html-pc-bar .word {
+  font-size: 14px;
+  color: #999;
+}
+.evaluation__html-pc-bar .word::after {
+  content: '';
+  height: 20px;
+  width: 3px;
+  background: #fdd000;
+  left: 5px;
+  top: 5px;
+  position: absolute;
+}
+.evaluation__html-pc-bar .send {
+  float: right;
+  padding: 0 10px;
+  background: red;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  line-height: 30px;
+  border-radius: 0;
+}

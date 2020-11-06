@@ -1,0 +1,49 @@
+{volist name="newsData" id="news"}
+<div class="home__main-new">
+  <div class="home__main-new-title">
+    <span class="home__main-new-title-l">
+      <i class="iconfont {$news['icon']}"></i>
+      {$news.name}看点
+    </span>
+    {if condition="$news['style'] !== 'select'"}
+    <a href="/{$news['key']}.html" class="home__main-new-title-r">
+      更多
+      <i class="iconfont icon-chevron-right-circle "></i>
+    </a>
+    {/if}
+  </div>
+
+  <div class="home__main-new-{$news.style} clearfix">
+    {volist name="news['list']" id="item"}
+    <a href="/news/{$news['key']}/{$item['id']}.html"  class="home__main-new-item clearfix">
+      <div class="home__main-new-item-pc">
+        <img src="{$item.pic}" alt="" class="fm">
+        {if condition="$news['style'] === 'select'"}
+        <span class="label">{$news['name']}</span>
+        {/if}
+      </div>
+      <div class="home__main-new-item-text">
+        <div class="title">{$item.title}</div>
+        {if condition="$news['style'] === 'list'"}
+        <p>{$item.des}</p>
+        {/if}
+        <div class="btns">
+          <span class="author">
+            <i class="iconfont icon-author"></i>
+            {$item.src}
+          </span>
+          <span class="time web__news-time">
+            <i class="iconfont icon-time"></i>
+            {$item.time}
+          </span>
+          <!-- <span class="browse">
+            <i class="iconfont icon-liulan"></i>
+              {$item.browse}
+          </span> -->
+        </div>
+      </div>
+    </a>
+    {/volist}
+  </div>
+</div>
+{/volist}

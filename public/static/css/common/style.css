@@ -1,0 +1,126 @@
+body{
+  background:#fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+body {
+  color: #666;
+  font-family: Helvetica;
+  background: #fff;
+  background: #F2F2F2 url(/static/image/bg.jpg) repeat-x center top;
+    
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:link {
+  text-decoration: none !important;
+}
+
+/* 指正常的未被访问过的链接*/
+a:visited {
+  text-decoration: none !important;
+}
+
+/*指已经访问过的链接*/
+a:hover {
+  text-decoration: none !important;
+}
+
+/*指鼠标在链接*/
+a:active {
+  text-decoration: none !important;
+}
+
+/* 指正在点的链接*/
+input {
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  content: '';
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.web__main{
+  padding-top:60px;
+}
+.web__paginator{
+  text-align: center;
+  padding:20px;
+}
+.web__paginator-btns {
+  text-align: center;
+  display: inline-block;
+  padding: 5px 12px;
+  border:1px solid #ddd;
+  vertical-align: middle;
+  margin: 20px 0;
+}
+.web__paginator-total {
+   display: inline-block;
+   padding:2px 12px;
+   vertical-align: middle;
+   margin: 20px 0;
+}
+.web__paginator .pagination{
+   vertical-align: middle;
+}
+@media screen and (min-width: 1200px) {
+  .web__main {
+    padding-top: 80px;
+  }
+  .web__content{
+     width: 1200px;
+     margin:auto;
+  }
+  .web__main-l{
+    width:  840px!important;
+    box-sizing: border-box;
+  }
+  .web__aside{
+    display: block !important;
+  }
+}
+@media screen and (min-width:750px) and (max-width: 1200px) {
+   .web__content {
+     width: calc(100% - 30px) !important;
+     box-sizing: border-box;
+     margin: auto;
+   }
+   
+}
+@media screen and (max-width: 750px) {
+  .web__content {
+    width: 100% !important;
+  }
+  .footer{
+    display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  .web__main {
+    padding-top: 50px;
+  }
+}

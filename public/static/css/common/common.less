@@ -1,0 +1,32 @@
+.toast__html{
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 10px;
+  border-radius: 4px;
+  transform: translate(-50%);
+  -ms-transform:  translate(-50%);
+  -moz-transform:  translate(-50%);
+  -webkit-transform:  translate(-50%);
+  -o-transform:  translate(-50%);
+  &-content{
+    font-size: 14px;
+    color: #fff;
+  }
+}
+.empty__html{
+  padding-top: 20px;
+  text-align: center;
+  i{
+    font-size: 80px;
+    color: #000;
+  }
+}
+@media screen and (max-width: 450px) {
+   .empty__html{
+     i{
+       font-size: 50px;
+     }
+   }
+}

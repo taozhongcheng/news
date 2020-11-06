@@ -1,0 +1,28 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-04 09:49:22
+ * @LastEditTime: 2020-11-05 16:47:35
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /thinkphp_news/app/web/view/pc/common/footer.html
+-->
+<div class="footer">
+  <div class="web__content footer__content">
+    <div class="footer__title">
+      <span class="footer__title-text">友情链接</span>
+    </div>
+    <div class="footer__link-list">
+      {volist name="linkList" id="item"}
+      <a href="{$item.url}.html">{$item['name']}</a>
+      {/volist}
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__bottom-record web__content">
+      © 2013-2016 今日看点（www.hatdot.com）版权所有 备案：京ICP备13036621号-3
+      <a href="" class="map">网站地图</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

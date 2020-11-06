@@ -1,0 +1,79 @@
+.footer {
+  margin-top: 20px;
+  background: #000;
+}
+.footer__content {
+  padding: 20px 20px 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.footer__title {
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.footer__title-text {
+  font-size: 16px;
+  position: relative;
+  color: #fff;
+}
+.footer__title-text::before {
+  content: '';
+  width: 70px;
+  height: 2px;
+  position: absolute;
+  left: -80px;
+  bottom: -1px;
+}
+.footer__title-text::after {
+  content: '';
+  width: 70px;
+  height: 2px;
+  position: absolute;
+  right: -80px;
+  bottom: -1px;
+}
+.footer__link-list {
+  padding-top: 10px;
+}
+.footer__link-list a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.footer__bottom {
+  margin-top: 20px;
+}
+.footer__bottom-record {
+  position: relative;
+  padding: 20px;
+  padding-right: 100px;
+  font-size: 14px;
+  color: #fff;
+  box-sizing: border-box;
+}
+.footer__bottom-record .map {
+  position: absolute;
+  right: 12px;
+  top: 20px;
+  color: #fff;
+}
+.footer__bottom-record .map::before {
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 1px;
+  background: #fff;
+  left: -8px;
+  top: 2px;
+}
+.footer__bottom-record .map::after {
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 1px;
+  background: #fff;
+  right: -8px;
+  top: 2px;
+}

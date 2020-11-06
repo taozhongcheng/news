@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="__CSS__/common/comments.css?v={$version}">
+<div class="comments__html">
+  <div class="comments__html-title">
+    <span>
+      <i class="iconfont icon-comment"></i>
+      热门评论
+    </span>
+    <span class="num"><b>0</b> 条评论</span>
+  </div>
+  <div class="comments__html-list">
+    {volist name="commentsList" id="item" empty="$emptyHtml"}
+    <div class="comments__html-list-item clearfix">
+      <div class="comments__html-list-item-pc">
+        <img src="{$item.user_img}" alt="">
+      </div>
+      <div class="comments__html-list-item-text">
+        <div class="comments__html-list-item-text-name">{$item.user_name}</div>
+        <div class="comments__html-list-item-text-des">{$item.content}</div>
+        <div class="comments__html-list-item-text-btns">
+          <span class="time">{$item.create_time}</span>
+          <span class="item item1 item-play-{$item.id}" onclick="healdPraise({$item['id']},'play')">
+            <i class="iconfont icon-cai"></i>
+            <span class="play-btn-{$item.id}">{$item.play}</span>
+          </span>
+          <span class="item item2 item-praise-{$item.id}" onclick="healdPraise({$item['id']},'praise')">
+            <i class="iconfont icon-zan"></i>
+            <span class="praise-btn-{$item.id}">{$item.praise}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    {/volist}
+  </div>
+</div>
+<script>
+  function healdPraise(id, type) {
+    const item = `.item-${type}-${id}`
+    if ($(item).hasClass('active')) return
+    request('{:url("/web/api/commentPraise")}', {id, type }, function (res) {
+      const dom = `.${type}-btn-${id}`
+      let num = Number($(dom).text())
+      $(dom).html(+num + 1)
+      $(item).addClass('active')
+    })
+  }
+</script>

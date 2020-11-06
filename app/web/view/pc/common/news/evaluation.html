@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="__CSS__/common/evaluation.css?v={$version}">
+<div class="evaluation__html">
+   <div class="evaluation__html-pc">
+     <div class="evaluation__html-pc-box">
+      <textarea name="" class="evaluation-textbox" placeholder="来说两句吧……"></textarea>
+     </div>
+     <div class="evaluation__html-pc-bar">
+       <span class="word">该条评论仅代发言者本人观点</span>
+       <button class="send" onclick="healdSend()">发送</button>
+     </div>
+   </div>
+</div>
+<script>
+  function healdSend() {
+    const params = {
+      id: "{$id}",
+      content: $('.evaluation-textbox').val()
+    }
+    request('{:url("/web/api/commentSend")}', params, function (res) {
+      toast(res.msg)
+    },'post')
+  }
+</script>
