@@ -18,7 +18,7 @@ class Index extends Base{
     if(!$isMobile){
       $newsData =  model('JisuNews')->setNewsList();
       $this->assign('newsData',$newsData);
-      return $this->fetch('pc/index');
+      return $this->fetch('/index');
     }else{
        $category=new \app\web\controller\Category();
        return $category->list();

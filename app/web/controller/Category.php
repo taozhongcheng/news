@@ -23,7 +23,7 @@ class Category extends Base
     }
 
     $this->assign('channel', $channel);
-    return $this->fetch('pc/category');
+    return $this->fetch('/category');
   }
 
   // 新闻列表数据

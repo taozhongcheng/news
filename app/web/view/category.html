@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="/web/css/category.css?v={$version}">
+{include file="/common/file" /}
+{include file="/common/header" /}
+<div class="web__main">
+  <div class="category__main web__content">
+    <div class="category__main-content clearfix">
+      <div class="category__main-l web__main-l">
+        <div class="category__main-header">
+          <span>当前位置：</span>
+          <a href="/">首页</a>
+          < <span>{$channel}</span>
+        </div>
+        <div class="category__main-new-list clearfix" id="news_ul">
+        </div>
+        <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+      </div>
+      {include file="/common/aside" /}
+    </div>
+  </div>
+</div>
+{include file="/common/footer" /}
+
+<script language="javascript">
+  const channel = "{$channel}" === '推荐' ? '' : "{$channel}";
+  const path = "{$path}" ? '{$path}' : 'push';
+  var pageNum = 1, listData = [], switchs = false, lastPage=1;
+  // 是否是详情页返回
+  const isBack = sessionStorage.getItem('ACTIVE_TYPE') && sessionStorage.getItem('ACTIVE_TYPE') == 2;
+
+  init()
+
+  $(document).bind('scroll', function () {
+  //文档内容实际高度（包括超出视窗的溢出部分）
+  var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+  //滚动条滚动距离
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+  //窗口可视范围高度
+  var clientHeight = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body, clientHeight)
+  if (clientHeight + scrollTop >= scrollHeight-150) {
+    if (switchs) return
+    pageNum++
+    switchs = true
+    getData()
+  }
+})
+  
+  function getData(){
+    request('{:url("/news/list")}', { page: pageNum, channel }, function (data) {
+      const list = data.data.list;
+      const html = setHtml(list);
+      switchs = false;
+      lastPage = data.data.lastPage;
+      listData=listData.concat(list);
+      if(lastPage > pageNum){
+        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+      }else{
+        switchs = true;
+        $(".list__loading").html('<p>没有更多了</p>')
+      }
+      $('#news_ul').append(html)
+    })
+  }
+
+   function setHtml(list) {
+      let html = '';
+      list.forEach(item => {
+        const type = item.cover_size;
+        const className = type >3 ? `more_cover` : '';
+        html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ className+"'>"
+        html += "<div class='clearfix item_li'>"
+        html += "<div class='category__main-new-list-item-text'>"
+        html += "<div class='title'>" + item['title'] + "</div>"
+        if (!className) {
+          html += "<p>" + item['des'] + "</p>"
+        }
+        html += "</div>"
+        html += "<div class='category__main-new-list-item-pc'>"
+        html += "<img src=" + item['cover'][0] + " alt='"+item['title'] +"'>"
+        if(className){
+          html += "<img src=" + item['cover'][2] + " alt='"+item['title'] +"'>"
+          html += "<img src=" + item['cover'][3] + " alt='"+item['title'] +"'>"
+        }
+        html += "</div>"
+        html += "<div class='category__main-new-list-item-btns'>"
+        html += "<span class='author'><i class='iconfont icon-author'></i>" + item['src'] + "</span>"
+        if (channel) {
+          html += "<span class='time'><i class='iconfont icon-time'></i>" + item['time'] + "</span>"
+        } else {
+          html += "<span class='channel'>" + item['channel'] + "</span>"
+        }
+        html += "</div></div></a>"
+      });
+     
+      return html
+    }
+    $('#news_ul').on('click', '.item_li', function () {
+      const height = $(document).scrollTop();
+      sessionStorage.setItem('HEIGHT', height);
+      sessionStorage.setItem('PAGE', pageNum);
+      sessionStorage.setItem('ACTIVE_TYPE', 2);
+      sessionStorage.setItem('LISTDATA', JSON.stringify(listData));
+      $(document).unbind("scroll")
+    })
+
+    function init(){
+      if (!isBack) {
+        getData()
+         return
+     }
+      pageNum = sessionStorage.getItem('PAGE');
+      const data = JSON.parse(sessionStorage.getItem('LISTDATA'));
+      const html = setHtml(data);
+      const height = sessionStorage.getItem('HEIGHT')
+      listData = listData.concat(data);
+      $('#news_ul').append(html);
+      
+      $(document).scrollTop(height)
+      clearSession()
+    }
+    function clearSession(){
+      sessionStorage.removeItem('HEIGHT');
+      sessionStorage.removeItem('PAGE');
+      sessionStorage.removeItem('ACTIVE_TYPE');
+      sessionStorage.removeItem('LISTDATA');
+    }
+</script>

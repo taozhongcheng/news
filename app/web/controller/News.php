@@ -35,7 +35,7 @@ class News extends Base
     ];
 
     $this->assign($viewData);
-    return $this->fetch('pc/news');
+    return $this->fetch('/news');
   }
 
   // 文章点赞

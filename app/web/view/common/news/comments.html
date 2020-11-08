@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/web/css/common/comments.css?v={$version}">
+<div class="comments__html">
+  <div class="comments__html-title">
+    <span>
+      <i class="iconfont icon-comment"></i>
+      热门评论
+    </span>
+    <span class="num"><b id="comment-num">0</b> 条评论</span>
+  </div>
+  <div class="comments__html-list">
+  </div>
+  <div class='empty__html'><i class='iconfont icon-kong2'></i></div>
+  <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+</div>
+<script>
+  function healdPraise(id, type) {
+    const item = `.item-${type}-${id}`
+    if ($(item).hasClass('active')) return
+    request('{:url("/news/comment/praise")}', {id, type }, function (res) {
+      const dom = `.${type}-btn-${id}`
+      let num = Number($(dom).text())
+      $(dom).html(+num + 1)
+      $(item).addClass('active')
+    })
+  }
+
+</script>
+<script language="javascript">
+  var page = 1, switchs = false, lastPage=1;
+
+  getCommentList()
+
+  $(document).bind('scroll', function () {
+  //文档内容实际高度（包括超出视窗的溢出部分）
+  var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+  //滚动条滚动距离
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+  //窗口可视范围高度
+  var clientHeight = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body, clientHeight)
+  if (clientHeight + scrollTop >= scrollHeight-150) {
+    if (switchs) return
+    page++
+    switchs = true
+    getCommentList()
+  }
+})
+  
+  function getCommentList(){
+    request('{:url("/news/comment/list")}', { page ,id:"{$id}"}, function (data) {
+      const list = data.data.list;
+      const html = setCommentHtml(list);
+      switchs = false;
+      lastPage = data.data.lastPage;
+      if(!data.data.total){
+        $('.empty__html').show();
+        $(".list__loading").hide();
+        return
+      }
+      $('#comment-num').html(data.data.total);
+      if(lastPage > page){
+        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+      }else{
+        switchs = true;
+        $(".list__loading").html('<p>没有更多了</p>')
+      }
+      $('.comments__html-list').append(html)
+    })
+  }
+
+   function setCommentHtml(list) {
+      let html = '';
+      list.forEach(item => {
+         html += `<div class="comments__html-list-item clearfix">
+                        <div class="comments__html-list-item-pc">
+                          <img src="${item.user_img}" alt="${item.user_name}">
+                        </div>
+                        <div class="comments__html-list-item-text">
+                          <div class="comments__html-list-item-text-name">${item.user_name}</div>
+                          <div class="comments__html-list-item-text-des">${item.content}</div>
+                          <div class="comments__html-list-item-text-btns">
+                            <span class="time">${item.create_time_text}</span>
+                            <span class="item item1 item-cai-${item.id}" onclick="healdPraise(${item['id']},'cai')">
+                              <i class="iconfont icon-cai"></i>
+                              <span class="cai-btn-${item.id}">${item.cai}</span>
+                            </span>
+                            <span class="item item2 item-praise-${item.id}" onclick="healdPraise(${item['id']},'praise')">
+                              <i class="iconfont icon-zan"></i>
+                              <span class="praise-btn-${item.id}">${item.praise}</span>
+                            </span>
+                          </div>
+                        </div>
+                     </div>`
+      });
+      return html
+    }
+
+</script>
