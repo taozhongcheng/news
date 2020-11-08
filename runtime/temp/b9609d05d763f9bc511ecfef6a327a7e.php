@@ -1,17 +1,30 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\category.html";i:1604414069;s:76:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\file.html";i:1604406590;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\header.html";i:1604406590;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\aside.html";i:1604406590;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\footer.html";i:1604406590;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\category.html";i:1604825656;s:76:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\file.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\header.html";i:1604762736;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\aside.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\footer.html";i:1604659666;}*/ ?>
 <link rel="stylesheet" href="__CSS__/category.css?v=<?php echo $version; ?>">
+<!--
+ * @Author: your name
+ * @Date: 2020-11-04 09:49:22
+ * @LastEditTime: 2020-11-05 16:49:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /thinkphp_news/app/web/view/pc/common/file.html
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title><?php echo $title; ?></title>
+    <meta name="keywords" content="<?php echo $seo['keyword']; ?>" />
+    <meta name="description" content="<?php echo $seo['desc']; ?>" />
+    <title><?php echo $seo['title']; ?></title>
     <link rel="stylesheet" href="__STATIC__/layui/css/layui.css">
     <link rel="stylesheet" href="__CSS__/common/style.css?v=<?php echo $version; ?>">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_s93xorm6mq.css">
+    <link rel="stylesheet" href="__CSS__/common/common.css?v=<?php echo $version; ?>">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_t5ezls12ll.css">
     <link rel="stylesheet" href="__CSS__/common/footer.css?v=<?php echo $version; ?>">
     <script src="__JS__/jquery-3.2.1.min.js"></script>
     <script src="__STATIC__/layui/layui.js"></script>
+    <script src="__JS__/request.js"></script>
+    <script src="__JS__/utils.js"></script>
     <script>
       var _hmt = _hmt || [];
       (function () {
@@ -35,7 +48,7 @@
       <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
       <li class="web__header-list-item <?php if($item['key'] === $pathIndex): ?>active<?php endif; ?>">
         <div class="web__header-list-item-icon"><i class="iconfont <?php echo $item['icon']; ?>"></i></div>
-        <a href="/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
+        <a href="/news/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
       </li>
       <?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
@@ -86,11 +99,11 @@
         <div class="category__main-header">
           <span>当前位置：</span>
           <a href="/">首页</a>
-          < <span><?php echo $title; ?></span>
+          < <span><?php echo $channel; ?></span>
         </div>
         <div class="category__main-new-list clearfix" id="news_ul">
         </div>
-        <div class="list-loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+        <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
       </div>
       <link rel="stylesheet" href="__CSS__/common/aside.css?v=<?php echo $version; ?>">
 <div class="web__aside">
@@ -135,6 +148,14 @@
     </div>
   </div>
 </div>
+<!--
+ * @Author: your name
+ * @Date: 2020-11-04 09:49:22
+ * @LastEditTime: 2020-11-05 16:47:35
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /thinkphp_news/app/web/view/pc/common/footer.html
+-->
 <div class="footer">
   <div class="web__content footer__content">
     <div class="footer__title">
@@ -157,8 +178,8 @@
 </html>
 
 <script language="javascript">
-  const channel = "<?php echo $title; ?>" === '推荐' ? '' : "<?php echo $title; ?>";
-  const path = "<?php echo $path; ?>" === '/' ? 'push' : '<?php echo $path; ?>';
+  const channel = "<?php echo $channel; ?>" === '推荐' ? '' : "<?php echo $channel; ?>";
+  const path = "<?php echo $path; ?>" ? '<?php echo $path; ?>' : 'push';
   var pageNum = 1, listData = [], switchs = false, lastPage=1;
   // 是否是详情页返回
   const isBack = sessionStorage.getItem('ACTIVE_TYPE') && sessionStorage.getItem('ACTIVE_TYPE') == 2;
@@ -181,17 +202,17 @@
 })
   
   function getData(){
-    $.get('<?php echo url("/web/api/newsList"); ?>', { page: pageNum, channel }, function (data) {
+    request('<?php echo url("/news/list"); ?>', { page: pageNum, channel }, function (data) {
       const list = data.data.list;
       const html = setHtml(list);
       switchs = false;
       lastPage = data.data.lastPage;
       listData=listData.concat(list);
       if(lastPage > pageNum){
-        $(".list-loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
       }else{
         switchs = true;
-        $(".list-loading").html('<p>没有更多了</p>')
+        $(".list__loading").html('<p>没有更多了</p>')
       }
       $('#news_ul').append(html)
     })
@@ -199,15 +220,24 @@
 
    function setHtml(list) {
       let html = '';
-      layui.each(list, function (index, item) {
+      list.forEach(item => {
         const type = item.cover_size;
-        const name = type >2 ? `more_cover` : '';
-        html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item'>"
+        const className = type >3 ? `more_cover` : '';
+        html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ className+"'>"
         html += "<div class='clearfix item_li'>"
         html += "<div class='category__main-new-list-item-text'>"
         html += "<div class='title'>" + item['title'] + "</div>"
-        html += "<p>" + item['des'] + "</p></div>"
-        html += "<div class='category__main-new-list-item-pc'><img src=" + item['pic'] + " alt=''></div>"
+        if (!className) {
+          html += "<p>" + item['des'] + "</p>"
+        }
+        html += "</div>"
+        html += "<div class='category__main-new-list-item-pc'>"
+        html += "<img src=" + item['cover'][0] + " alt='"+item['title'] +"'>"
+        if(className){
+          html += "<img src=" + item['cover'][2] + " alt='"+item['title'] +"'>"
+          html += "<img src=" + item['cover'][3] + " alt='"+item['title'] +"'>"
+        }
+        html += "</div>"
         html += "<div class='category__main-new-list-item-btns'>"
         html += "<span class='author'><i class='iconfont icon-author'></i>" + item['src'] + "</span>"
         if (channel) {
@@ -217,6 +247,7 @@
         }
         html += "</div></div></a>"
       });
+     
       return html
     }
     $('#news_ul').on('click', '.item_li', function () {

@@ -136,15 +136,6 @@
 .category__main-l .category__main-new-list .layui-flow-more a cite {
   background: #fff;
 }
-.category__main-l .list-loading {
-  padding-top: 10px;
-  line-height: 50px;
-  text-align: center;
-  color: #333;
-}
-.category__main-l .list-loading img {
-  height: 50px;
-}
 @media screen and (max-width: 450px) {
   .category__main-l {
     padding-top: 0;

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:69:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\news.html";i:1604659666;s:76:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\file.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\header.html";i:1604659666;s:85:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\news\comments.html";i:1604659666;s:87:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\news\evaluation.html";i:1604659666;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\aside.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\footer.html";i:1604659666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:69:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\news.html";i:1604808848;s:76:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\file.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\header.html";i:1604762736;s:85:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\news\comments.html";i:1604833014;s:87:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\news\evaluation.html";i:1604833454;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\aside.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\footer.html";i:1604659666;}*/ ?>
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -56,7 +56,7 @@
       <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
       <li class="web__header-list-item <?php if($item['key'] === $pathIndex): ?>active<?php endif; ?>">
         <div class="web__header-list-item-icon"><i class="iconfont <?php echo $item['icon']; ?>"></i></div>
-        <a href="/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
+        <a href="/news/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
       </li>
       <?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
@@ -130,6 +130,16 @@
         <div class="news__main-l-detail-content">
           <?php echo $detail['content']; ?>
         </div>
+        <div class="news__main-l-detail-btns">
+            <span class="item detail-item-praise" onclick="healdDetailActive('<?php echo $detail['id']; ?>','praise')">
+              <i class="iconfont icon-zan"></i>
+              <span class="detail-praise"><?php echo $detail['praise']; ?></span>
+            </span>
+            <span class="item detail-item-cai"  onclick="healdDetailActive('<?php echo $detail['id']; ?>','cai')">
+              <i class="iconfont icon-cai"></i>
+              <span class="detail-cai"><?php echo $detail['cai']; ?></span>
+            </span>
+        </div>
       </div>
       <div class="news__main-l-related clearfix">
         <div class="news__main-l-related-title">
@@ -168,44 +178,95 @@
       <i class="iconfont icon-comment"></i>
       热门评论
     </span>
-    <span class="num"><b>0</b> 条评论</span>
+    <span class="num"><b id="comment-num">0</b> 条评论</span>
   </div>
   <div class="comments__html-list">
-    <?php if(is_array($commentsList) || $commentsList instanceof \think\Collection || $commentsList instanceof \think\Paginator): $i = 0; $__LIST__ = $commentsList;if( count($__LIST__)==0 ) : echo "$emptyHtml" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
-    <div class="comments__html-list-item clearfix">
-      <div class="comments__html-list-item-pc">
-        <img src="<?php echo $item['user_img']; ?>" alt="">
-      </div>
-      <div class="comments__html-list-item-text">
-        <div class="comments__html-list-item-text-name"><?php echo $item['user_name']; ?></div>
-        <div class="comments__html-list-item-text-des"><?php echo $item['content']; ?></div>
-        <div class="comments__html-list-item-text-btns">
-          <span class="time"><?php echo $item['create_time']; ?></span>
-          <span class="item item1 item-play-<?php echo $item['id']; ?>" onclick="healdPraise(<?php echo $item['id']; ?>,'play')">
-            <i class="iconfont icon-cai"></i>
-            <span class="play-btn-<?php echo $item['id']; ?>"><?php echo $item['play']; ?></span>
-          </span>
-          <span class="item item2 item-praise-<?php echo $item['id']; ?>" onclick="healdPraise(<?php echo $item['id']; ?>,'praise')">
-            <i class="iconfont icon-zan"></i>
-            <span class="praise-btn-<?php echo $item['id']; ?>"><?php echo $item['praise']; ?></span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <?php endforeach; endif; else: echo "$emptyHtml" ;endif; ?>
   </div>
+  <div class='empty__html'><i class='iconfont icon-kong2'></i></div>
+  <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
 </div>
 <script>
   function healdPraise(id, type) {
     const item = `.item-${type}-${id}`
     if ($(item).hasClass('active')) return
-    request('<?php echo url("/web/api/commentPraise"); ?>', {id, type }, function (res) {
+    request('<?php echo url("/news/comment/praise"); ?>', {id, type }, function (res) {
       const dom = `.${type}-btn-${id}`
       let num = Number($(dom).text())
       $(dom).html(+num + 1)
       $(item).addClass('active')
     })
   }
+
+</script>
+<script language="javascript">
+  var page = 1, switchs = false, lastPage=1;
+
+  getCommentList()
+
+  $(document).bind('scroll', function () {
+  //文档内容实际高度（包括超出视窗的溢出部分）
+  var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+  //滚动条滚动距离
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+  //窗口可视范围高度
+  var clientHeight = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body, clientHeight)
+  if (clientHeight + scrollTop >= scrollHeight-150) {
+    if (switchs) return
+    page++
+    switchs = true
+    getCommentList()
+  }
+})
+  
+  function getCommentList(){
+    request('<?php echo url("/news/comment/list"); ?>', { page ,id:"<?php echo $id; ?>"}, function (data) {
+      const list = data.data.list;
+      const html = setCommentHtml(list);
+      switchs = false;
+      lastPage = data.data.lastPage;
+      if(!data.data.total){
+        $('.empty__html').show();
+        $(".list__loading").hide();
+        return
+      }
+      $('#comment-num').html(data.data.total);
+      if(lastPage > page){
+        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+      }else{
+        switchs = true;
+        $(".list__loading").html('<p>没有更多了</p>')
+      }
+      $('.comments__html-list').append(html)
+    })
+  }
+
+   function setCommentHtml(list) {
+      let html = '';
+      list.forEach(item => {
+         html += `<div class="comments__html-list-item clearfix">
+                        <div class="comments__html-list-item-pc">
+                          <img src="${item.user_img}" alt="${item.user_name}">
+                        </div>
+                        <div class="comments__html-list-item-text">
+                          <div class="comments__html-list-item-text-name">${item.user_name}</div>
+                          <div class="comments__html-list-item-text-des">${item.content}</div>
+                          <div class="comments__html-list-item-text-btns">
+                            <span class="time">${item.create_time_text}</span>
+                            <span class="item item1 item-cai-${item.id}" onclick="healdPraise(${item['id']},'cai')">
+                              <i class="iconfont icon-cai"></i>
+                              <span class="cai-btn-${item.id}">${item.cai}</span>
+                            </span>
+                            <span class="item item2 item-praise-${item.id}" onclick="healdPraise(${item['id']},'praise')">
+                              <i class="iconfont icon-zan"></i>
+                              <span class="praise-btn-${item.id}">${item.praise}</span>
+                            </span>
+                          </div>
+                        </div>
+                     </div>`
+      });
+      return html
+    }
+
 </script>
       <link rel="stylesheet" href="__CSS__/common/evaluation.css?v=<?php echo $version; ?>">
 <div class="evaluation__html">
@@ -225,8 +286,14 @@
       id: "<?php echo $id; ?>",
       content: $('.evaluation-textbox').val()
     }
-    request('<?php echo url("/web/api/commentSend"); ?>', params, function (res) {
+    request('<?php echo url("/news/comment/send"); ?>', params, function (res) {
       toast(res.msg)
+      const html = setCommentHtml(res.data)
+      const total = Number($('#comment-num').html())
+      $('.comments__html-list').prepend(html)
+      $('#comment-num').html(total+1);
+      $('.evaluation-textbox').val('');
+      if(!total) $('.empty__html').hide();
     },'post')
   }
 </script>
@@ -303,3 +370,15 @@
 </div>
 </body>
 </html>
+<script>
+  function healdDetailActive(id,type) {
+      const item = `.detail-item-${type}`
+      if ($(item).hasClass('active')) return
+      request('<?php echo url("/news/detail/praise"); ?>', {id, type }, function (res) {
+        const dom = `.detail-${type}`
+        let num = $(dom).html()
+        $(dom).html(+num + 1)
+        $(item).addClass('active')
+      })
+    }
+</script>

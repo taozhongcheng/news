@@ -12,7 +12,7 @@
         </div>
         <div class="category__main-new-list clearfix" id="news_ul">
         </div>
-        <div class="list-loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+        <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
       </div>
       {include file="/pc/common/aside" /}
     </div>
@@ -22,7 +22,7 @@
 
 <script language="javascript">
   const channel = "{$channel}" === '推荐' ? '' : "{$channel}";
-  const path = "{$path}" === '/' ? 'push' : '{$path}';
+  const path = "{$path}" ? '{$path}' : 'push';
   var pageNum = 1, listData = [], switchs = false, lastPage=1;
   // 是否是详情页返回
   const isBack = sessionStorage.getItem('ACTIVE_TYPE') && sessionStorage.getItem('ACTIVE_TYPE') == 2;
@@ -45,17 +45,17 @@
 })
   
   function getData(){
-    request('{:url("/web/api/newsList")}', { page: pageNum, channel }, function (data) {
+    request('{:url("/news/list")}', { page: pageNum, channel }, function (data) {
       const list = data.data.list;
       const html = setHtml(list);
       switchs = false;
       lastPage = data.data.lastPage;
       listData=listData.concat(list);
       if(lastPage > pageNum){
-        $(".list-loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
       }else{
         switchs = true;
-        $(".list-loading").html('<p>没有更多了</p>')
+        $(".list__loading").html('<p>没有更多了</p>')
       }
       $('#news_ul').append(html)
     })
@@ -63,7 +63,7 @@
 
    function setHtml(list) {
       let html = '';
-      layui.each(list, function (index, item) {
+      list.forEach(item => {
         const type = item.cover_size;
         const className = type >3 ? `more_cover` : '';
         html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ className+"'>"
@@ -75,10 +75,10 @@
         }
         html += "</div>"
         html += "<div class='category__main-new-list-item-pc'>"
-        html += "<img src=" + item['cover'][0] + " alt=''>"
+        html += "<img src=" + item['cover'][0] + " alt='"+item['title'] +"'>"
         if(className){
-          html += "<img src=" + item['cover'][2] + " alt=''>"
-          html += "<img src=" + item['cover'][3] + " alt=''>"
+          html += "<img src=" + item['cover'][2] + " alt='"+item['title'] +"'>"
+          html += "<img src=" + item['cover'][3] + " alt='"+item['title'] +"'>"
         }
         html += "</div>"
         html += "<div class='category__main-new-list-item-btns'>"
@@ -90,6 +90,7 @@
         }
         html += "</div></div></a>"
       });
+     
       return html
     }
     $('#news_ul').on('click', '.item_li', function () {

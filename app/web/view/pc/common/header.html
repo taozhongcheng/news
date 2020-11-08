@@ -8,7 +8,7 @@
       {volist name="headerMap" id="item"}
       <li class="web__header-list-item {if condition='$item.key === $pathIndex'}active{/if}">
         <div class="web__header-list-item-icon"><i class="iconfont {$item.icon}"></i></div>
-        <a href="/{$item.key}.html">{$item.name}</a>
+        <a href="/news/{$item.key}.html">{$item.name}</a>
       </li>
       {/volist}
     </ul>

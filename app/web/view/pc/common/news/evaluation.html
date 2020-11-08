@@ -16,8 +16,14 @@
       id: "{$id}",
       content: $('.evaluation-textbox').val()
     }
-    request('{:url("/web/api/commentSend")}', params, function (res) {
+    request('{:url("/news/comment/send")}', params, function (res) {
       toast(res.msg)
+      const html = setCommentHtml(res.data)
+      const total = Number($('#comment-num').html())
+      $('.comments__html-list').prepend(html)
+      $('#comment-num').html(total+1);
+      $('.evaluation-textbox').val('');
+      if(!total) $('.empty__html').hide();
     },'post')
   }
 </script>

@@ -69,25 +69,39 @@
         }
         &-btns {
           line-height: 30px;
-
-          span {
-            color: #999;
-            font-size: 12px;
-           
-          }
+          color: #999;
+          font-size: 12px;  
           .item {
               float: right;
               margin-left: 20px;
                cursor: pointer;
                vertical-align: middle;
               &.item1.active {
-                .iconfont {
-                  color: #000;
+                position: relative;
+                color: #000;
+                &::after{
+                  content: '+1';
+                  position: absolute;
+                  top:-20px;
+                  font-size: 10px;
+                  left: 50%;
+                  margin-left: -5px;
+                  opacity: 0;
+                  -webkit-animation: praise 2.5s;
                 }
               }
               &.item2.active {
-                .iconfont {
-                  color: red;
+                position: relative;
+                color: red;
+                &::after{
+                  content: '+1';
+                  position: absolute;
+                  top:-20px;
+                  font-size: 10px;
+                  left: 50%;
+                  margin-left: -5px;
+                  opacity: 0;
+                  -webkit-animation: praise 2.5s;
                 }
               }
             }
@@ -110,6 +124,11 @@
       }
     }
   }
+}
+@-webkit-keyframes praise {
+  0% {top:-10px;opacity: 0; transform: scale(1);}
+  50%{top:-25px;opacity: 1;transform: scale(1.5);}
+  100% {top:-45px;opacity: 0;transform: scale(1);}
 }
 @media screen and (max-width: 450px) {
   .comments__html{

@@ -3,17 +3,16 @@
 namespace app\web\model;
 
 use think\Model;
-use think\Db;
 
-class News extends Model
+class JisuNews extends Model
 {
-  public function __construct()
-  {
-  }
+  protected $autoWriteTimestamp = false;
+  protected $updateTime = false;
+  protected $createTime = false;
 
   public function getNewsByPage($page = 1, $channel, $pagesize = 10)
   {
-    $rows = Db::table('jisu_news');
+    $rows = model('JisuNews');
     if ($channel) {
       $rows = $rows->where('channel', $channel);
     }
@@ -43,7 +42,7 @@ class News extends Model
   }
   public function getNewsLimit($limit = 1, $channel = "头条")
   {
-    $rows = Db::table('jisu_news')
+    $rows = model('JisuNews')
       ->where("channel", $channel)
       ->order('time', 'desc')
       ->limit($limit)
@@ -77,7 +76,7 @@ class News extends Model
   //根据id查询新闻
   public function getRowById($id)
   {
-    $row = Db::table('jisu_news')->where('id', $id)->find();
+    $row = model('JisuNews')->get($id); 
     $divNum = substr_count($row['content'], 'div');
     // 一些HTML多了</div>
     if ($divNum % 2) {
@@ -91,7 +90,7 @@ class News extends Model
   //相关新闻查询
   public function getRelatedNews($channel = "头条", $id)
   {
-    $row = Db::table('jisu_news');
+    $row = model('JisuNews');
     if ($channel !== "推荐") {
       $row = $row->where("channel", $channel);
     };
@@ -108,17 +107,9 @@ class News extends Model
   // 文章数据更新
   public function updateNews($id, $word)
   {
-    $row = Db::table('jisu_news')
+    $row = model('JisuNews')
       ->where('id', $id)
       ->inc($word)
       ->update();
-  }
-  // 友情链接列表
-  public function getLinkList(){
-    $row = Db::table('link')
-    ->order('sort','asc')
-    ->limit(100)
-    ->select();
-    return $row;
   }
 }

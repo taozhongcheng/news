@@ -58,3 +58,27 @@ function getDescriptionFromContent($content, $count)
 	}
 	return $res;
 }
+
+// 时间转文字 $time 时间戳
+function timeToText($time)
+ {
+    //获取今天凌晨的时间戳
+    $day = strtotime(date('Y-m-d',time()));
+    //获取昨天凌晨的时间戳
+    $pday = strtotime(date('Y-m-d',strtotime('-1 day')));
+    //获取现在的时间戳
+    $nowtime = time();  
+    $t = $nowtime-$time;
+   if($time<$pday){
+      $str = date('Y-m-d H:i:s',$time);
+   }elseif($time<$day && $time>$pday){
+      $str = "昨天";
+   }elseif($t>60*60){
+      $str = floor($t/(60*60))."小时前";
+   }elseif($t>60){
+      $str = floor($t/60)."分钟前";
+   }else{
+      $str = "刚刚";
+   }
+   return $str;
+}

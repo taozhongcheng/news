@@ -1,9 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:63:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/index.html";i:1604454562;s:69:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/common/file.html";i:1604545567;s:71:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/common/header.html";i:1604454562;s:79:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/common/index/newsList.html";i:1604454562;s:70:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/common/aside.html";i:1604454562;s:71:"/mnt/hgfs/xm/thinkphp_news/public/../app/web/view/pc/common/footer.html";i:1604454562;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:70:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\index.html";i:1604659666;s:76:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\file.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\header.html";i:1604762736;s:86:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\index\newsList.html";i:1604765869;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\aside.html";i:1604659666;s:78:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\pc\common\footer.html";i:1604659666;}*/ ?>
 <link rel="stylesheet" href="__CSS__/index.css?v=<?php echo $version; ?>">
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
- * @LastEditTime: 2020-11-05 11:06:07
+ * @LastEditTime: 2020-11-05 16:49:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp_news/app/web/view/pc/common/file.html
@@ -18,10 +18,13 @@
     <title><?php echo $seo['title']; ?></title>
     <link rel="stylesheet" href="__STATIC__/layui/css/layui.css">
     <link rel="stylesheet" href="__CSS__/common/style.css?v=<?php echo $version; ?>">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_du7h5obbuq.css">
+    <link rel="stylesheet" href="__CSS__/common/common.css?v=<?php echo $version; ?>">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_t5ezls12ll.css">
     <link rel="stylesheet" href="__CSS__/common/footer.css?v=<?php echo $version; ?>">
     <script src="__JS__/jquery-3.2.1.min.js"></script>
     <script src="__STATIC__/layui/layui.js"></script>
+    <script src="__JS__/request.js"></script>
+    <script src="__JS__/utils.js"></script>
     <script>
       var _hmt = _hmt || [];
       (function () {
@@ -45,7 +48,7 @@
       <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
       <li class="web__header-list-item <?php if($item['key'] === $pathIndex): ?>active<?php endif; ?>">
         <div class="web__header-list-item-icon"><i class="iconfont <?php echo $item['icon']; ?>"></i></div>
-        <a href="/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
+        <a href="/news/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
       </li>
       <?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
@@ -100,7 +103,7 @@
       <?php echo $news['name']; ?>看点
     </span>
     <?php if($news['style'] !== 'select'): ?>
-    <a href="/<?php echo $news['key']; ?>.html" class="home__main-new-title-r">
+    <a href="/news/<?php echo $news['key']; ?>.html" class="home__main-new-title-r">
       更多
       <i class="iconfont icon-chevron-right-circle "></i>
     </a>
@@ -184,6 +187,14 @@
 </div>
   </div>
 </div>
+<!--
+ * @Author: your name
+ * @Date: 2020-11-04 09:49:22
+ * @LastEditTime: 2020-11-05 16:47:35
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /thinkphp_news/app/web/view/pc/common/footer.html
+-->
 <div class="footer">
   <div class="web__content footer__content">
     <div class="footer__title">

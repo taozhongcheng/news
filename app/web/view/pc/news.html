@@ -39,6 +39,16 @@
         <div class="news__main-l-detail-content">
           {$detail['content']}
         </div>
+        <div class="news__main-l-detail-btns">
+            <span class="item detail-item-praise" onclick="healdDetailActive('{$detail.id}','praise')">
+              <i class="iconfont icon-zan"></i>
+              <span class="detail-praise">{$detail.praise}</span>
+            </span>
+            <span class="item detail-item-cai"  onclick="healdDetailActive('{$detail.id}','cai')">
+              <i class="iconfont icon-cai"></i>
+              <span class="detail-cai">{$detail.cai}</span>
+            </span>
+        </div>
       </div>
       <div class="news__main-l-related clearfix">
         <div class="news__main-l-related-title">
@@ -79,3 +89,15 @@
   </div>
 </div>
 {include file="/pc/common/footer" /}
+<script>
+  function healdDetailActive(id,type) {
+      const item = `.detail-item-${type}`
+      if ($(item).hasClass('active')) return
+      request('{:url("/news/detail/praise")}', {id, type }, function (res) {
+        const dom = `.detail-${type}`
+        let num = $(dom).html()
+        $(dom).html(+num + 1)
+        $(item).addClass('active')
+      })
+    }
+</script>

@@ -1,4 +1,5 @@
 <?php
+use think\Route;
 /*
  * @Author: your name
  * @Date: 2020-10-10 11:31:17
@@ -7,24 +8,14 @@
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp/conf/route.php
  */
-return [
-  '/' => 'web/index/index',
-  '/push' =>'web/index/category',
-  '/hot' =>'web/index/category',
-  '/finance' =>'web/index/category',
-  '/tech' =>'web/index/category',
-  '/military' =>'web/index/category',
-  '/ent' =>'web/index/category',
-  '/sports' =>'web/index/category',
-  '/edu' =>'web/index/category',
-  '/nba' =>'web/index/category',
-  '/stock' =>'web/index/category',
-  '/women' =>'web/index/category',
-  '/health' =>'web/index/category',
-  '/star' =>'web/index/category',
-  '/baby' =>'web/index/category',
-  
-  // 对应控制器下某个方法
-  '/news/:type/:id' => 'web/index/news',
-  
-];
+
+Route::rule('/','web/index/index','get');
+Route::rule('/news/:type$','web/category/list','get');   //文章类型列表页面
+Route::rule('/news/list','web/category/newsList','get');   //文章类型列表数据
+
+Route::rule('/news/:type/:id$','web/news/detail','get'); // 文章详情
+Route::rule('/news/detail/praise','web/news/detailPraise','get'); // 文章内容点赞，踩
+Route::rule('/news/comment/praise','web/news/commentPraise','get');  // 评论点赞，踩
+
+Route::rule('/news/comment/send','web/news/commentSend','post'); // 发表评论
+Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论列表
