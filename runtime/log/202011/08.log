@@ -19557,3 +19557,47 @@
 [ info ] [ LOG ] INIT File
 
 ---------------------------------------------------------------
+[ 2020-11-08T22:13:21+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ log ] new.com/ [运行时间：0.091005s][吞吐率：10.99req/s] [内存消耗：3,305.92kb] [文件加载：44]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'web',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604495221,1604668763,1604723208,1604804147; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604844753',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/news/hot.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\web\controller\Index->index[ D:\phpstudy_pro\WWW\thinkphp_news\app\web\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html [ array (
+  0 => 'version',
+  1 => 'isMobile',
+  2 => 'headerMap',
+  3 => 'pathIndex',
+  4 => 'title',
+  5 => 'hotList',
+  6 => 'week',
+  7 => 'linkList',
+  8 => 'seo',
+  9 => 'newsData',
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
