@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-27 18:25:02
- * @LastEditTime: 2020-11-05 11:05:36
+ * @LastEditTime: 2020-11-09 12:38:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp/conf/config.php
@@ -22,6 +22,8 @@ return [
      '__COCO__' => '我是替换coco啊'
    ],
   'app_debug' => true,
+  // 禁止访问模块
+  'deny_module_list' => [],
   //抛出 HTTP 异常
   'http_exception_template' => [
     404 => APP_PATH . '404.html',

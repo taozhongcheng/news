@@ -17,7 +17,7 @@
   display: inline-block;
   height: 100%;
   font-size: 0;
-  width: 100px;
+  width: 80px;
   position: relative;
 }
 .web__header-logo a img {
@@ -64,6 +64,7 @@
 }
 .web__header-right .item {
   display: inline-block;
+  cursor: pointer;
 }
 .web__header-right-time {
   margin-right: 10px;

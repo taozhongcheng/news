@@ -38,6 +38,33 @@ a:active {
 input {
   margin: 0;
   padding: 0;
+  outline: none;
+}
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+}
+button:focus,
+input:focus,
+textarea:focus,
+textarea.active:focus,
+button:active.focus,
+input:active.focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
 }
 .clearfix {
   zoom: 1;
@@ -51,6 +78,7 @@ input {
   clear: both;
 }
 .toast__html {
+  z-index: 999999;
   position: fixed;
   left: 50%;
   bottom: 50%;

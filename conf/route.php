@@ -3,7 +3,7 @@ use think\Route;
 /*
  * @Author: your name
  * @Date: 2020-10-10 11:31:17
- * @LastEditTime: 2020-10-12 10:10:07
+ * @LastEditTime: 2020-11-09 12:26:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp/conf/route.php
@@ -19,3 +19,6 @@ Route::rule('/news/comment/praise','web/news/commentPraise','get');  // 评论�
 
 Route::rule('/news/comment/send','web/news/commentSend','post'); // 发表评论
 Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论列表
+
+
+Route::rule('/admin/register','common/admin/register','post'); // 用户注册
