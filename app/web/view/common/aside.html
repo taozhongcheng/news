@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 09:43:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/aside.html
+-->
 <link rel="stylesheet" href="/web/css/common/aside.css?v={$version}">
 <div class="web__aside">
   <div class="web__aside-headlines">
@@ -11,7 +19,7 @@
       {volist name="hotList" id="item" key="i"}
       <div class="web__aside-headlines-list-item">
         {if condition="$i < 4"}
-        <img src="/static/image/trophy{$i}.png" alt="">
+        <img src="/web/image/trophy{$i}.png" alt="">
         {else /}
           <span class="bage">{$i}</span>
         {/if}
@@ -31,10 +39,10 @@
       关注微信群，广告位招租
     </div>
     <div class="web__aside-rent-pc">
-      <img src="/static/image/code.jpg" alt="二维码">
+      <img src="/web/image/code.jpg" alt="二维码">
     </div>
     <div class="web__aside-rent-advertising">
-      <img src="/static/image/gg.png" alt="广告">
+      <img src="/web/image/gg.png" alt="广告">
     </div>
   </div>
 </div>

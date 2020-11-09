@@ -1,4 +1,6 @@
 <?php
+
+use mailer\phpmailer;
 /*
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -81,4 +83,30 @@ function timeToText($time)
       $str = "刚刚";
    }
    return $str;
+}
+// 公共发送邮件函数
+function sendEmail($title,$desc_content, $toemail)
+{
+	$mail = new PHPMailer();
+	$mail->IsSMTP(); // 启用SMTP  
+	$mail->Host = 'smtp.qq.com'; //SMTP服务器 以qq邮箱为例子   
+	$mail->Port = 465;  //邮件发送端口  
+	$mail->SMTPAuth = true;  //启用SMTP认证  
+	$mail->SMTPSecure = "ssl";   // 设置安全验证方式为ssl  
+	$mail->CharSet = "UTF-8"; //字符集  
+	$mail->Encoding = "base64"; //编码方式  
+	$mail->Username = '1849847528@qq.com';  //发件人邮箱 
+	$mail->Password = 'ahewugbsnugydcba';  //发件人密码 ==>重点：是授权码，不是邮箱密码  
+	   
+	$mail->From = '1849847528@qq.com';  //发件人邮箱 
+	$mail->FromName = 'coco';  //发件人姓名  
+	$mail->AddAddress($toemail); //添加收件人 
+	$mail->IsHTML(true); //支持html格式内容  
+	$mail->Subject = $title; //邮件标题 
+	$mail->Body = $desc_content; //邮件主体内容  
+	if (!$mail->send()) { // 发送邮件
+		return $mail->ErrorInfo;
+	} else {
+		return 1;
+	}
 }

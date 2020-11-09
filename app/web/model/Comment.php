@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 15:56:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/model/Comment.php
+ */
 
 namespace app\web\model;
 

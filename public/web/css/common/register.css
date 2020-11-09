@@ -7,10 +7,10 @@
   top: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
+  z-index: 9999;
 }
 .register__html-warp {
-  background: #fff;
+  background-image: linear-gradient(180deg, #b9d7e4 1%, #ffffff 33%);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -28,50 +28,96 @@
   position: relative;
 }
 .register__html-warp-head span {
-  font-size: 30px;
+  font-size: 25px;
   color: #00A5EB;
 }
-.register__html-warp-head i {
+.register__html-warp-head .register__html-close {
   position: absolute;
   right: 0px;
   top: 0px;
-  font-size: 30px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+}
+.register__html-warp-head .register__html-close i {
+  font-size: 15px;
   color: #00A5EB;
+  color: #999;
 }
 .register__html-warp-mid .form-item {
   line-height: 40px;
   margin-bottom: 20px;
+  position: relative;
+}
+.register__html-warp-mid .form-item::after {
+  content: '';
+  height: 1px;
+  width: 300%;
+  background: #00A5EB;
+  position: absolute;
+  left: -100%;
+  bottom: 0;
+  transform: scale(0.333);
+  -webkit-transform: scale(0.333);
+}
+.register__html-warp-mid .form-item .iconfont {
+  font-size: 22px;
+  vertical-align: middle;
+  color: #000;
 }
 .register__html-warp-mid .form-item-label {
-  font-size: 14px;
-  color: #333;
-  margin-right: 18px;
-  width: 60px;
+  font-size: 15px;
+  color: #666;
+  width: 65px;
   display: inline-block;
+  vertical-align: middle;
 }
 .register__html-warp-mid .form-item-input {
-  width: 200px;
+  width: 220px;
   display: inline-block;
   line-height: 40px;
   height: 40px;
-  border-bottom: 1px solid #999;
+  position: relative;
 }
 .register__html-warp-mid .form-item-input input {
   line-height: 40px;
   height: 40px;
-  padding: 0 10px;
+  width: 90%;
+  box-sizing: border-box;
+  padding: 0 5px;
   border: none;
   outline: none;
+  background: transparent;
 }
 .register__html-warp-mid .form-item-input input:focus {
   border: none;
 }
+.register__html-warp-mid .form-item-input .send-email {
+  background: #b9d7e4;
+  font-size: 12px;
+  color: #00A5EB;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.register__html-warp-mid .form-item-input.has-email input {
+  width: 68%;
+}
 .register__html-warp-mid .form-item-submit {
+  cursor: pointer;
+  border-radius: 4px;
   line-height: 40px;
   text-align: center;
   background: #00A5EB;
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
   width: 100%;
   display: block;
+  border: none;
 }

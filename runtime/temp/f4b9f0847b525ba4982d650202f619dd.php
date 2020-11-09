@@ -1,9 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604841319;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1604842775;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1604841366;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1604928215;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604841388;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604841319;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1604928460;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1604928460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
 <link rel="stylesheet" href="/web/css/index.css?v=<?php echo $version; ?>">
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
- * @LastEditTime: 2020-11-05 16:49:22
+ * @LastEditTime: 2020-11-09 09:50:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp_news/app/web/view/pc/common/file.html
@@ -19,12 +19,12 @@
     <!-- <link rel="stylesheet" href="__STATIC__/layui/css/layui.css"> -->
     <link rel="stylesheet" href="/common/css/style.css?v=<?php echo $version; ?>">
     <link rel="stylesheet" href="/web/css/common/common.css?v=<?php echo $version; ?>">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_t5ezls12ll.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2090112_gzf58brdqd.css">
     <link rel="stylesheet" href="/web/css/common/footer.css?v=<?php echo $version; ?>">
     <script src="/common/js/jquery-3.2.1.min.js"></script>
     <!-- <script src="__STATIC__/layui/layui.js"></script> -->
-    <script src="/common/js/request.js"></script>
-    <script src="/common/js/utils.js"></script>
+    <script src="/common/js/request.js?v=<?php echo $version; ?>"></script>
+    <script src="/common/js/utils.js?v=<?php echo $version; ?>"></script>
     <script>
       var _hmt = _hmt || [];
       (function () {
@@ -37,11 +37,19 @@
 
   </head>
   <body>
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 10:24:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/header.html
+-->
 <link rel="stylesheet" href="/web/css/common/header.css?v=<?php echo $version; ?>">
 <div class="web__header clearfix">
   <div class=" web__content clearfix">
     <div class="web__header-logo">
-      <a href="/"><img src="__STATIC__/image/logo4.png" alt="logo"></a>
+      <a href="/"><img src="/web/image/logo4.png" alt="logo"></a>
     </div>
     <ul class="web__header-list">
       <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
@@ -63,11 +71,11 @@
       </div>
     </div>
     <div class="web__header-right">
-      <div class="web__header-right-time item">
-        <?php echo date("Y/m/d") ?>
+      <div class="web__header-right-time item" onclick="openRegisterMotal()">
+         注册
       </div>
       <div class="web__header-right-weatch item">
-        <?php echo $week; ?>
+        <!-- 登录 -->
       </div>
     </div>
     <div class="web__header-motal"></div>
@@ -91,45 +99,93 @@
     })
   }
 </script>
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 12:32:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/register.html
+-->
 <link rel="stylesheet" href="/web/css/common/register.css?v=<?php echo $version; ?>">
 <div class="register__html">
     <div class="register__html-warp">
         <div class="register__html-warp-head">
-            <span>注册</span>
-            <i class="iconfont icon-zan"></i>
+            <span>用户注册</span>
+            <span class="register__html-close" onclick="closeRegisterMotal()"><i
+                    class="iconfont icon-guanbi1"></i></span>
         </div>
         <div class="register__html-warp-mid">
-             <form>
-                 <div class="form-item">
-                     <span class="form-item-label">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span>
-                     <div class="form-item-input"><input type="text" placeholder="请输入昵称"></div>
-                 </div>
-                 <div class="form-item">
-                    <span class="form-item-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</span>
-                    <div class="form-item-input"><input type="text" placeholder="请输入邮箱"></div>
+            <form id="register__form">
+                <div class="form-item">
+                    <i class="iconfont icon-nicheng"></i>
+                    <span class="form-item-label">用户昵称</span>
+                    <div class="form-item-input"><input type="text" name="nickname" placeholder="请输入用户昵称"></div>
                 </div>
                 <div class="form-item">
-                    <span class="form-item-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
-                    <div class="form-item-input"><input type="text" placeholder="请输入密码"></div>
+                    <i class="iconfont icon-mima"></i>
+                    <span class="form-item-label">用户密码</span>
+                    <div class="form-item-input"><input type="text" name="password" placeholder="请输入用户密码"></div>
                 </div>
                 <div class="form-item">
+                    <i class="iconfont icon-querenmima"></i>
                     <span class="form-item-label">确认密码</span>
-                    <div class="form-item-input"><input type="text" placeholder="请确认密码"></div>
+                    <div class="form-item-input"><input type="text" name="confirm" placeholder="请确认用户密码"></div>
                 </div>
                 <div class="form-item">
-                    <span class="form-item-submit">注册</span>
+                    <i class="iconfont icon-youxiang"></i>
+                    <span class="form-item-label">用户邮箱</span>
+                    <div class="form-item-input has-email">
+                        <input type="text" name="email" placeholder="请输入用户邮箱">
+                        <span class="send-email">发送验证码</span>
+                    </div>
                 </div>
-             </form>
+                <div class="form-item">
+                    <i class="iconfont icon-ecurityCode"></i>
+                    <span class="form-item-label">验证码</span>
+                    <div class="form-item-input"><input type="text" name="code" placeholder="请输入邮箱验证码"></div>
+                </div>
+                <div class="form-item">
+                    <button class="form-item-submit" onclick="register()">立即注册</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+<script>
+    function openRegisterMotal() {
+        $('.register__html').show();
+    }
+    function closeRegisterMotal() {
+        $('.register__html').hide();
+    }
+    function register() {
+        const formData = $('#register__form').serializeArray()
+        $('.form-item-submit').attr("disabled", true); 
+        request('<?php echo url("/admin/register"); ?>', formData, function (res) {
+            toast(res.msg)
+            closeRegisterMotal()
+        }, 'post')
+        setTimeout(function(){
+             $('.form-item-submit').attr("disabled", false); 
+        },2000)
+    }
+</script>
   
 
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 10:24:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/header.html
+-->
 <link rel="stylesheet" href="/web/css/common/header.css?v=<?php echo $version; ?>">
 <div class="web__header clearfix">
   <div class=" web__content clearfix">
     <div class="web__header-logo">
-      <a href="/"><img src="__STATIC__/image/logo4.png" alt="logo"></a>
+      <a href="/"><img src="/web/image/logo4.png" alt="logo"></a>
     </div>
     <ul class="web__header-list">
       <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
@@ -151,11 +207,11 @@
       </div>
     </div>
     <div class="web__header-right">
-      <div class="web__header-right-time item">
-        <?php echo date("Y/m/d") ?>
+      <div class="web__header-right-time item" onclick="openRegisterMotal()">
+         注册
       </div>
       <div class="web__header-right-weatch item">
-        <?php echo $week; ?>
+        <!-- 登录 -->
       </div>
     </div>
     <div class="web__header-motal"></div>
@@ -232,7 +288,15 @@
 </div>
 <?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
-    <link rel="stylesheet" href="/web/css/common/aside.css?v=<?php echo $version; ?>">
+    <!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 09:43:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/aside.html
+-->
+<link rel="stylesheet" href="/web/css/common/aside.css?v=<?php echo $version; ?>">
 <div class="web__aside">
   <div class="web__aside-headlines">
     <div class="web__aside-title">
@@ -245,7 +309,7 @@
       <?php if(is_array($hotList) || $hotList instanceof \think\Collection || $hotList instanceof \think\Paginator): $i = 0; $__LIST__ = $hotList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
       <div class="web__aside-headlines-list-item">
         <?php if($i < 4): ?>
-        <img src="/static/image/trophy<?php echo $i; ?>.png" alt="">
+        <img src="/web/image/trophy<?php echo $i; ?>.png" alt="">
         <?php else: ?>
           <span class="bage"><?php echo $i; ?></span>
         <?php endif; ?>
@@ -265,10 +329,10 @@
       关注微信群，广告位招租
     </div>
     <div class="web__aside-rent-pc">
-      <img src="/static/image/code.jpg" alt="二维码">
+      <img src="/web/image/code.jpg" alt="二维码">
     </div>
     <div class="web__aside-rent-advertising">
-      <img src="/static/image/gg.png" alt="广告">
+      <img src="/web/image/gg.png" alt="广告">
     </div>
   </div>
 </div>

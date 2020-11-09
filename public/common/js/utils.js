@@ -1,4 +1,4 @@
-function toast(msg="操作成功！",time=1500){
+function toast(msg="操作成功！",time=1000){
   const div = document.createElement("div");
   div.className = "toast__html";
   let html = "<div class='toast__html-content'>"+msg+"</div>"    

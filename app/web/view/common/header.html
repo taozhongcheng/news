@@ -1,8 +1,16 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 10:24:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/header.html
+-->
 <link rel="stylesheet" href="/web/css/common/header.css?v={$version}">
 <div class="web__header clearfix">
   <div class=" web__content clearfix">
     <div class="web__header-logo">
-      <a href="/"><img src="__STATIC__/image/logo4.png" alt="logo"></a>
+      <a href="/"><img src="/web/image/logo4.png" alt="logo"></a>
     </div>
     <ul class="web__header-list">
       {volist name="headerMap" id="item"}
@@ -24,11 +32,11 @@
       </div>
     </div>
     <div class="web__header-right">
-      <div class="web__header-right-time item">
-        <?php echo date("Y/m/d") ?>
+      <div class="web__header-right-time item" onclick="openRegisterMotal()">
+         注册
       </div>
       <div class="web__header-right-weatch item">
-        {$week}
+        <!-- 登录 -->
       </div>
     </div>
     <div class="web__header-motal"></div>

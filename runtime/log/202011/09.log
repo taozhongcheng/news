@@ -604,3 +604,290 @@
 [ info ] [ LOG ] INIT File
 
 ---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ log ] new.com/ [运行时间：0.099006s][吞吐率：10.10req/s] [内存消耗：3,305.73kb] [文件加载：44]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'web',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\web\controller\Index->index[ D:\phpstudy_pro\WWW\thinkphp_news\app\web\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html [ array (
+  0 => 'version',
+  1 => 'isMobile',
+  2 => 'headerMap',
+  3 => 'pathIndex',
+  4 => 'title',
+  5 => 'hotList',
+  6 => 'week',
+  7 => 'linkList',
+  8 => 'seo',
+  9 => 'newsData',
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/logo4.png
+[ log ] new.com/static/image/logo4.png [运行时间：0.017001s][吞吐率：58.82req/s] [内存消耗：996.52kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'logo4.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/trophy2.png
+[ log ] new.com/static/image/trophy2.png [运行时间：0.017001s][吞吐率：58.82req/s] [内存消耗：996.56kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'trophy2.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/trophy3.png
+[ log ] new.com/static/image/trophy3.png [运行时间：0.018001s][吞吐率：55.55req/s] [内存消耗：996.56kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'trophy3.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/code.jpg
+[ log ] new.com/static/image/code.jpg [运行时间：0.018001s][吞吐率：55.55req/s] [内存消耗：996.52kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'code.jpg',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:38+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/trophy1.png
+[ log ] new.com/static/image/trophy1.png [运行时间：0.017001s][吞吐率：58.82req/s] [内存消耗：996.56kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'trophy1.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:25:39+08:00 ] 127.0.0.1 127.0.0.1 GET /static/image/gg.png
+[ log ] new.com/static/image/gg.png [运行时间：0.015001s][吞吐率：66.66req/s] [内存消耗：996.48kb] [文件加载：27]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'image',
+    2 => 'gg.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928218',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'accept' => 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:28:06+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ log ] new.com/ [运行时间：0.106006s][吞吐率：9.43req/s] [内存消耗：3,659.20kb] [文件加载：47]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'web',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928339',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\web\controller\Index->index[ D:\phpstudy_pro\WWW\thinkphp_news\app\web\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html [ array (
+  0 => 'version',
+  1 => 'isMobile',
+  2 => 'headerMap',
+  3 => 'pathIndex',
+  4 => 'title',
+  5 => 'hotList',
+  6 => 'week',
+  7 => 'linkList',
+  8 => 'seo',
+  9 => 'newsData',
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-11-09T21:28:18+08:00 ] 127.0.0.1 127.0.0.1 POST /admin/register.html
+[ log ] new.com/admin/register.html [运行时间：0.028001s][吞吐率：35.71req/s] [内存消耗：2,271.67kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\thinkphp_news\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'common',
+    1 => 'admin',
+    2 => 'register',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_2f85a3983cf5632e1a1707a23feeef55=1604668763,1604723208,1604804147,1604928201; Hm_lpvt_2f85a3983cf5632e1a1707a23feeef55=1604928486',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.com/',
+  'origin' => 'http://new.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '41',
+  'connection' => 'close',
+  'host' => 'new.com',
+)
+[ info ] [ PARAM ] array (
+  'nickname' => '',
+  'password' => '',
+  'confirm' => '',
+  'email' => '',
+  'code' => '',
+)
+[ info ] [ RUN ] app\common\controller\Admin->register[ D:\phpstudy_pro\WWW\thinkphp_news\app\common\controller\Admin.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
