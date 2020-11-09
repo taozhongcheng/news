@@ -1,6 +1,6 @@
 <?php
 
-use mailer\phpmailer;
+use mailer\PHPMailer;
 /*
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -89,17 +89,25 @@ function sendEmail($title,$desc_content, $toemail)
 {
 	$mail = new PHPMailer();
 	$mail->IsSMTP(); // 启用SMTP  
-	$mail->Host = 'smtp.qq.com'; //SMTP服务器 以qq邮箱为例子   
-	$mail->Port = 465;  //邮件发送端口  
+  
+	
+	$mail->Port = 465;  //邮件发送端口 994 
 	$mail->SMTPAuth = true;  //启用SMTP认证  
 	$mail->SMTPSecure = "ssl";   // 设置安全验证方式为ssl  
 	$mail->CharSet = "UTF-8"; //字符集  
 	$mail->Encoding = "base64"; //编码方式  
-	$mail->Username = '1849847528@qq.com';  //发件人邮箱 
-	$mail->Password = 'ahewugbsnugydcba';  //发件人密码 ==>重点：是授权码，不是邮箱密码  
-	   
-	$mail->From = '1849847528@qq.com';  //发件人邮箱 
-	$mail->FromName = 'coco';  //发件人姓名  
+
+	// $mail->Host = 'smtp.qq.com'; //以qq邮箱为例子 
+	// $mail->Username = '1849847528@qq.com';  //发件人邮箱 
+	// $mail->Password = 'ahewugbsnugydcba';  //qq发件人密码 ==>重点：是授权码，不是邮箱密码  ahewugbsnugydcba
+	// $mail->From = '1849847528@qq.com';  //发件人邮箱 
+
+ 	$mail->Host = 'smtp.163.com'; //SMTP服务器 
+ 	$mail->Username = 'cocotaos@163.com';  //发件人邮箱 
+	$mail->Password = 'UKEGYXYAMNFQOYDH';  //163发件人密码 ==>重点：是授权码，不是邮箱密码   UKEGYXYAMNFQOYDH   
+	$mail->From = 'cocotaos@163.com';  //发件人邮箱 
+
+	$mail->FromName = 'cocotao';  //发件人姓名  
 	$mail->AddAddress($toemail); //添加收件人 
 	$mail->IsHTML(true); //支持html格式内容  
 	$mail->Subject = $title; //邮件标题 

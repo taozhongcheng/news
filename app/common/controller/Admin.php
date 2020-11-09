@@ -24,12 +24,14 @@ class Admin extends Controller
       'email' => input('post.email'),
       'code' => input('post.code')
     ];
-     $res = model('Admin')->add($data);
-     if($res ===1){
-       sendEmail('coco新闻网注册', "恭喜你注册成功<br>用户昵称：" . $data['nickname'] . "<br>用户密码：" . $data['password'], '328336507@qq.com');
-       return $this->success('注册成功！');
-     }else{
-       return $this->error($res);
-     }
+   $res = sendEmail('coco新闻网注册', "恭喜你注册成功用户昵称：" . $data['nickname'] . "用户密码：" . $data['password'], '328336507@qq.com');
+    return $res;
+    $res = model('Admin')->add($data);
+    if ($res === 1) {
+      sendEmail('coco新闻网注册', "恭喜你注册成功<br>用户昵称：" . $data['nickname'] . "<br>用户密码：" . $data['password'], '328336507@qq.com');
+      return $this->success('注册成功！');
+    } else {
+      return $this->error($res);
+    }
   }
 }

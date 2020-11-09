@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604841319;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1604928460;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1604928460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
-<link rel="stylesheet" href="/web/css/index.css?v=<?php echo $version; ?>">
+<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1604928460;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1604928460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -173,68 +172,7 @@
 </script>
   
 
-<!--
- * @Author: your name
- * @Date: 2020-11-09 09:30:50
- * @LastEditTime: 2020-11-09 10:24:25
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /news/app/web/view/common/header.html
--->
-<link rel="stylesheet" href="/web/css/common/header.css?v=<?php echo $version; ?>">
-<div class="web__header clearfix">
-  <div class=" web__content clearfix">
-    <div class="web__header-logo">
-      <a href="/"><img src="/web/image/logo4.png" alt="logo"></a>
-    </div>
-    <ul class="web__header-list">
-      <?php if(is_array($headerMap) || $headerMap instanceof \think\Collection || $headerMap instanceof \think\Paginator): $i = 0; $__LIST__ = $headerMap;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
-      <li class="web__header-list-item <?php if($item['key'] === $pathIndex): ?>active<?php endif; ?>">
-        <div class="web__header-list-item-icon"><i class="iconfont <?php echo $item['icon']; ?>"></i></div>
-        <a href="/news/<?php echo $item['key']; ?>.html"><?php echo $item['name']; ?></a>
-      </li>
-      <?php endforeach; endif; else: echo "" ;endif; ?>
-    </ul>
-
-    <div class="web__header-more">
-      <div class="web__header-more-rgrad"></div>
-      <div class="web__header-more-down">
-        <span class="home" onclick="healdMeunClick()">
-          <span class="homeline"></span>
-          <span class="homeline"></span>
-          <span class="homeline"></span>
-        </span>
-      </div>
-    </div>
-    <div class="web__header-right">
-      <div class="web__header-right-time item" onclick="openRegisterMotal()">
-         注册
-      </div>
-      <div class="web__header-right-weatch item">
-        <!-- 登录 -->
-      </div>
-    </div>
-    <div class="web__header-motal"></div>
-  </div>
-</div>
-<script>
-  function healdMeunClick(){
-    const isActive = $('.web__header').hasClass('web__app-header')
-    isActive ? meunUp() : meunDown()
-  }
-  function meunDown(){
-    $('.web__header').addClass('web__app-header');
-    $('.web__header-more-down .home').addClass('active')
-    $('.web__app-header').animate({height:275},'slow')
-  }
-  function meunUp(){
-    $('.web__header-more-down .home').removeClass('active')
-    $('.web__app-header').animate({ height: 50 }, '50',function(){
-      $('.web__header').removeClass('web__app-header');
-      
-    })
-  }
-</script>
+<link rel="stylesheet" href="/web/css/index.css?v=<?php echo $version; ?>">
 <div class="home__main web__main">
   <div class="home__main-content web__content  clearfix">
     <div class="home__main-content-ml web__main-l">
