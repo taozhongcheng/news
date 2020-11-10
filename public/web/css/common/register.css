@@ -44,9 +44,10 @@
   cursor: pointer;
 }
 .register__html-warp-head .register__html-close i {
-  font-size: 15px;
+  font-size: 14px;
   color: #00A5EB;
   color: #999;
+  vertical-align: middle;
 }
 .register__html-warp-mid .form-item {
   line-height: 40px;
@@ -86,7 +87,7 @@
 .register__html-warp-mid .form-item-input input {
   line-height: 40px;
   height: 40px;
-  width: 90%;
+  width: 100%;
   box-sizing: border-box;
   padding: 0 5px;
   border: none;
@@ -96,13 +97,13 @@
 .register__html-warp-mid .form-item-input input:focus {
   border: none;
 }
-.register__html-warp-mid .form-item-input .send-email {
+.register__html-warp-mid .form-item-input .send-code {
   background: #b9d7e4;
   font-size: 12px;
   color: #00A5EB;
   position: absolute;
   right: 0;
-  top: 0;
+  bottom: 0;
   padding: 0 5px;
   cursor: pointer;
 }

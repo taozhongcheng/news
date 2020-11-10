@@ -19,30 +19,30 @@
                 <div class="form-item">
                     <i class="iconfont icon-nicheng"></i>
                     <span class="form-item-label">用户昵称</span>
-                    <div class="form-item-input"><input type="text" name="nickname" placeholder="请输入用户昵称"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="nickname" placeholder="请输入用户昵称"></div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-mima"></i>
                     <span class="form-item-label">用户密码</span>
-                    <div class="form-item-input"><input type="text" name="password" placeholder="请输入用户密码"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码"></div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-querenmima"></i>
                     <span class="form-item-label">确认密码</span>
-                    <div class="form-item-input"><input type="text" name="confirm" placeholder="请确认用户密码"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="confirm" placeholder="请确认用户密码"></div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-youxiang"></i>
                     <span class="form-item-label">用户邮箱</span>
                     <div class="form-item-input has-email">
-                        <input type="text" name="email" placeholder="请输入用户邮箱">
-                        <span class="send-email">发送验证码</span>
+                        <input type="text" name="email" length="15" placeholder="请输入用户邮箱">
+                        <span class="send-code" onclick="sendCodeOfReg()">发送验证码</span>
                     </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-ecurityCode"></i>
                     <span class="form-item-label">验证码</span>
-                    <div class="form-item-input"><input type="text" name="code" placeholder="请输入邮箱验证码"></div>
+                    <div class="form-item-input"><input type="text" length="4" name="code" placeholder="请输入邮箱验证码"></div>
                 </div>
                 <div class="form-item">
                     <button class="form-item-submit" onclick="register()">立即注册</button>
@@ -58,15 +58,24 @@
     function closeRegisterMotal() {
         $('.register__html').hide();
     }
+    function sendCodeOfReg() {
+        const reg= /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        const email = $("input[name=email]").val();
+        if(!reg.test(email)) return toast("邮箱格式有误！");
+        request('{:url("/admin/register/code")}',{email},function(){
+
+        })
+    }
     function register() {
         const formData = $('#register__form').serializeArray()
-        $('.form-item-submit').attr("disabled", true); 
+        $('.form-item-submit').attr("disabled", true);
         request('{:url("/admin/register")}', formData, function (res) {
+            $('#register__form')[0].reset()
             toast(res.msg)
             closeRegisterMotal()
         }, 'post')
-        setTimeout(function(){
-             $('.form-item-submit').attr("disabled", false); 
-        },2000)
+        setTimeout(function () {
+            $('.form-item-submit').attr("disabled", false);
+        }, 2000)
     }
 </script>

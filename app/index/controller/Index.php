@@ -9,7 +9,7 @@
  */
 namespace app\index\controller;
 use think\Env;
-
+use think\Session;
 class Index                           
 {
     // 在整个模块动态配置
@@ -17,9 +17,11 @@ class Index
         config('before','beforeAction');
     }
     public function index(){
-       // $res = $_ENV;
-       // $res = Env::get('coco1','default');
+        // $res = $_ENV;
+        // $res = Env::get('coco1','default');
+     //  Session::set('AAA',111);
+       dump(Session::get('AAA'));
         $res = Env::get('database.hostname');
-        dump(config());
+       // dump(config());
      }
 }

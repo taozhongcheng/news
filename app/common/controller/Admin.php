@@ -9,8 +9,8 @@
  */
 
 namespace app\common\controller;
-
 use think\Controller;
+use think\Session;
 
 class Admin extends Controller
 {
@@ -24,14 +24,23 @@ class Admin extends Controller
       'email' => input('post.email'),
       'code' => input('post.code')
     ];
-   $res = sendEmail('coco新闻网注册', "恭喜你注册成功用户昵称：" . $data['nickname'] . "用户密码：" . $data['password'], '328336507@qq.com');
-    return $res;
     $res = model('Admin')->add($data);
     if ($res === 1) {
-      sendEmail('coco新闻网注册', "恭喜你注册成功<br>用户昵称：" . $data['nickname'] . "<br>用户密码：" . $data['password'], '328336507@qq.com');
-      return $this->success('注册成功！');
+      sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
+      Session::set('code', null);
+      return $this->success('注册成功！');    
     } else {
       return $this->error($res);
+    }
+  }
+
+  public function code(){
+    $email = input('get.email');
+    $num = mt_rand(1000,9999);
+    Session::set('code', $num);
+    $res = sendEmail('cocotao新闻网注册验证码',"尊敬的cocotao新闻网用户，您本次注册邮箱验证码是：".$num,$email);
+    if($res === 1){
+      return $this->success('注册验证码发送成功！');
     }
   }
 }
