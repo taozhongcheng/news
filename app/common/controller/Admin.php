@@ -40,6 +40,7 @@ class Admin extends Controller
     ];
     $res = model('Admin')->login($data);
     if ($res === 1) {
+      session('login',true);
       return $this->success('登录成功！');
     } else {
       return $this->error($res);

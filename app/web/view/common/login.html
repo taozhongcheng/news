@@ -29,7 +29,7 @@
             </div>
           </div>
         <div class="form-item">
-          <button class="form-item-submit" onclick="login()">立即登录</button>
+          <button class="form-item-submit" onclick="login();return false">立即登录</button>
         </div>
       </form>
     </div>
@@ -49,6 +49,7 @@
       $('#login__form')[0].reset()
       toast(res.msg)
       closeLoginMotal()
+      // $(".web__header").removeClass('web__app-header');
     }, 'post')
     setTimeout(function () {
       $('.form-item-submit').attr("disabled", false);

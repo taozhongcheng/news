@@ -48,7 +48,7 @@
                     <div class="form-item-input"><input type="text" length="4" name="code" placeholder="请输入邮箱验证码"></div>
                 </div>
                 <div class="form-item">
-                    <button class="form-item-submit" onclick="register()">立即注册</button>
+                    <button class="form-item-submit" onclick="register();return false">立即注册</button>
                 </div>
             </form>
         </div>
@@ -90,6 +90,7 @@
         request('{:url("/admin/register")}', formData, function (res) {
             $('#register__form')[0].reset()
             $(".send-code").prop("disabled", "");
+           // $(".web__header").removeClass('web__app-header');
             toast(res.msg)
             closeRegisterMotal()
         }, 'post')
