@@ -23,7 +23,7 @@ class Admin extends Controller
       'email' => input('post.email'),
       'code' => input('post.code')
     ];
-    $res = model('Admin')->add($data);
+    $res = model('Admin')->register($data);
     if ($res === 1) {
       sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
       session('code', null);
@@ -32,7 +32,19 @@ class Admin extends Controller
       return $this->error($res);
     }
   }
-
+  public function login()
+  {
+    $data = [
+      'email' => input('post.email'),
+      'password' => input('post.password'),
+    ];
+    $res = model('Admin')->login($data);
+    if ($res === 1) {
+      return $this->success('登录成功！');
+    } else {
+      return $this->error($res);
+    }
+  }
   public function code(){
     $email = input('get.email');
     $num = mt_rand(1000,9999);

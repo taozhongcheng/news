@@ -23,3 +23,4 @@ Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论�
 
 Route::rule('/admin/register','common/admin/register','post'); // 用户注册
 Route::rule('/admin/register/code', 'common/admin/code', 'get'); // 用户注册发送验证码
+Route::rule('/admin/login', 'common/admin/login', 'post'); // 用户登录

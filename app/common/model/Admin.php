@@ -12,9 +12,9 @@
 
   class Admin extends Model{
 
-    public function add($data){
+    public function register($data){
       $validate = new \app\common\validate\Admin();
-      if(!$validate->scene('add')->check($data)){
+      if(!$validate->scene('register')->check($data)){
         return $validate->getError();
       }
     if ($data['code'] != session('code')) {
@@ -25,6 +25,20 @@
         return 1;
       }
     }
+
+  public function login($data)
+  {
+    $validate = new \app\common\validate\Admin();
+    if (!$validate->scene('login')->check($data)) {
+      return $validate->getError();
+    }
+    $row = model('Admin')->get($data);
+    if ($row) {
+      return 1;
+    }else{
+      return '登录账号或密码错误！';
+    }
+  }
   }
 
   

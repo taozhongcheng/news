@@ -57,7 +57,7 @@
 }
 .web__header-right {
   position: absolute;
-  right: 0;
+  right: 20px;
   top: 0;
   height: 100%;
   width: 80px;

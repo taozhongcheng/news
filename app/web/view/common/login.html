@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 12:32:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/login.html
+-->
+<link rel="stylesheet" href="/web/css/common/login.css?v={$version}">
+<div class="login__html">
+  <div class="login__html-warp">
+    <div class="login__html-warp-head">
+      <span>用户登录</span>
+      <span class="login__html-close" onclick="closeLoginMotal()"><i class="iconfont icon-guanbi1"></i></span>
+    </div>
+    <div class="login__html-warp-mid">
+      <form id="login__form">
+        <div class="form-item">
+          <i class="iconfont icon-youxiang"></i>
+          <span class="form-item-label">用户邮箱</span>
+          <div class="form-item-input">
+            <input type="text" name="email" length="15" placeholder="请输入用户邮箱">
+          </div>
+        </div>
+          <div class="form-item">
+            <i class="iconfont icon-mima"></i>
+            <span class="form-item-label">用户密码</span>
+            <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码">
+            </div>
+          </div>
+        <div class="form-item">
+          <button class="form-item-submit" onclick="login()">立即登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function openLoginMotal() {
+    $('.login__html').show();
+  }
+  function closeLoginMotal() {
+    $('.login__html').hide();
+  }
+  function login() {
+    const formData = $('#login__form').serializeArray()
+    $('.form-item-submit').attr("disabled", true);
+    request('{:url("/admin/login")}', formData, function (res) {
+      $('#login__form')[0].reset()
+      toast(res.msg)
+      closeLoginMotal()
+    }, 'post')
+    setTimeout(function () {
+      $('.form-item-submit').attr("disabled", false);
+    }, 2000)
+  }
+</script>
