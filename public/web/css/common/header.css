@@ -180,7 +180,7 @@
     width: 100%;
     text-align: left;
     background: #fff;
-    padding-bottom: 10px;
+    padding-bottom: 11px;
   }
   .web__header.web__app-header .web__header-logo a {
     width: 20%;
@@ -193,7 +193,7 @@
     width: 200%;
     background: #ccc;
     position: absolute;
-    bottom: 10px;
+    bottom: 9px;
     left: -50%;
     transform: scale(0.666);
     -webkit-transform: scale(0.666);
