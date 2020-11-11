@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:7:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1604928460;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1604928460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1605097000;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1605097000;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1605097000;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\login.html";i:1605097000;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -73,8 +73,8 @@
       <div class="web__header-right-time item" onclick="openRegisterMotal()">
          注册
       </div>
-      <div class="web__header-right-weatch item">
-        <!-- 登录 -->
+      <div class="web__header-right-weatch item" onclick="openLoginMotal()">
+        登录
       </div>
     </div>
     <div class="web__header-motal"></div>
@@ -119,33 +119,36 @@
                 <div class="form-item">
                     <i class="iconfont icon-nicheng"></i>
                     <span class="form-item-label">用户昵称</span>
-                    <div class="form-item-input"><input type="text" name="nickname" placeholder="请输入用户昵称"></div>
-                </div>
-                <div class="form-item">
-                    <i class="iconfont icon-mima"></i>
-                    <span class="form-item-label">用户密码</span>
-                    <div class="form-item-input"><input type="text" name="password" placeholder="请输入用户密码"></div>
-                </div>
-                <div class="form-item">
-                    <i class="iconfont icon-querenmima"></i>
-                    <span class="form-item-label">确认密码</span>
-                    <div class="form-item-input"><input type="text" name="confirm" placeholder="请确认用户密码"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="nickname" placeholder="请输入用户昵称">
+                    </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-youxiang"></i>
                     <span class="form-item-label">用户邮箱</span>
                     <div class="form-item-input has-email">
-                        <input type="text" name="email" placeholder="请输入用户邮箱">
-                        <span class="send-email">发送验证码</span>
+                        <input type="text" name="email" length="15" placeholder="请输入用户邮箱">
+                        <button class="send-code" onclick="sendCodeOfReg();return false;">发送验证码</button>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <i class="iconfont icon-mima"></i>
+                    <span class="form-item-label">用户密码</span>
+                    <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码">
+                    </div>
+                </div>
+                <div class="form-item">
+                    <i class="iconfont icon-querenmima"></i>
+                    <span class="form-item-label">确认密码</span>
+                    <div class="form-item-input"><input type="text" length="15" name="confirm" placeholder="请确认用户密码">
                     </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-ecurityCode"></i>
                     <span class="form-item-label">验证码</span>
-                    <div class="form-item-input"><input type="text" name="code" placeholder="请输入邮箱验证码"></div>
+                    <div class="form-item-input"><input type="text" length="4" name="code" placeholder="请输入邮箱验证码"></div>
                 </div>
                 <div class="form-item">
-                    <button class="form-item-submit" onclick="register()">立即注册</button>
+                    <button class="form-item-submit" onclick="register();return false">立即注册</button>
                 </div>
             </form>
         </div>
@@ -158,17 +161,101 @@
     function closeRegisterMotal() {
         $('.register__html').hide();
     }
+    // 验证码效果,90秒后图片验证码自动刷新
+    function setSendBtn() {
+        var i = 90;
+        $(".send-code").html(i + "秒后重发").prop("disabled", "disabled");
+        var time = setInterval(function () {
+            i--;
+            if (i > 0) {
+                $(".send-code").html(i + "秒后重发").prop("disabled", "disabled");
+            } else {
+                clearInterval(time);
+                $(".send-code").html("重新获取").prop("disabled", "");
+            }
+        }, 1000);
+    }
+    function sendCodeOfReg() {
+        const reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        const email = $("input[name=email]").val();
+        if (!reg.test(email)) return toast("邮箱格式有误！");
+        request('<?php echo url("/admin/register/code"); ?>', { email }, function () {
+            setSendBtn()
+        })
+        return false
+    }
     function register() {
         const formData = $('#register__form').serializeArray()
-        $('.form-item-submit').attr("disabled", true); 
+        $('.form-item-submit').attr("disabled", true);
         request('<?php echo url("/admin/register"); ?>', formData, function (res) {
+            $('#register__form')[0].reset()
+            $(".send-code").prop("disabled", "");
+           // $(".web__header").removeClass('web__app-header');
             toast(res.msg)
             closeRegisterMotal()
         }, 'post')
-        setTimeout(function(){
-             $('.form-item-submit').attr("disabled", false); 
-        },2000)
+        setTimeout(function () {
+            $('.form-item-submit').attr("disabled", false);
+        }, 2000)
     }
+</script>
+<!--
+ * @Author: your name
+ * @Date: 2020-11-09 09:30:50
+ * @LastEditTime: 2020-11-09 12:32:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /news/app/web/view/common/login.html
+-->
+<link rel="stylesheet" href="/web/css/common/login.css?v=<?php echo $version; ?>">
+<div class="login__html">
+  <div class="login__html-warp">
+    <div class="login__html-warp-head">
+      <span>用户登录</span>
+      <span class="login__html-close" onclick="closeLoginMotal()"><i class="iconfont icon-guanbi1"></i></span>
+    </div>
+    <div class="login__html-warp-mid">
+      <form id="login__form">
+        <div class="form-item">
+          <i class="iconfont icon-youxiang"></i>
+          <span class="form-item-label">用户邮箱</span>
+          <div class="form-item-input">
+            <input type="text" name="email" length="15" placeholder="请输入用户邮箱">
+          </div>
+        </div>
+          <div class="form-item">
+            <i class="iconfont icon-mima"></i>
+            <span class="form-item-label">用户密码</span>
+            <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码">
+            </div>
+          </div>
+        <div class="form-item">
+          <button class="form-item-submit" onclick="login();return false">立即登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function openLoginMotal() {
+    $('.login__html').show();
+  }
+  function closeLoginMotal() {
+    $('.login__html').hide();
+  }
+  function login() {
+    const formData = $('#login__form').serializeArray()
+    $('.form-item-submit').attr("disabled", true);
+    request('<?php echo url("/admin/login"); ?>', formData, function (res) {
+      $('#login__form')[0].reset()
+      toast(res.msg)
+      closeLoginMotal()
+      // $(".web__header").removeClass('web__app-header');
+    }, 'post')
+    setTimeout(function () {
+      $('.form-item-submit').attr("disabled", false);
+    }, 2000)
+  }
 </script>
   
 
