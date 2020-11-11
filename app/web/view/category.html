@@ -11,7 +11,7 @@
         </div>
         <div class="category__main-new-list clearfix" id="news_ul">
         </div>
-        <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+        <div class="list__loading"><img src="/common/image/loading.gif" alt="loading"></div>
       </div>
       {include file="/common/aside" /}
     </div>
@@ -51,7 +51,7 @@
       lastPage = data.data.lastPage;
       listData=listData.concat(list);
       if(lastPage > pageNum){
-        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+        $(".list__loading").html("<img src='/common/image/loading.gif' alt='loading'>")
       }else{
         switchs = true;
         $(".list__loading").html('<p>没有更多了</p>')

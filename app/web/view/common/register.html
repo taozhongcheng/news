@@ -19,24 +19,27 @@
                 <div class="form-item">
                     <i class="iconfont icon-nicheng"></i>
                     <span class="form-item-label">用户昵称</span>
-                    <div class="form-item-input"><input type="text" length="15" name="nickname" placeholder="请输入用户昵称"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="nickname" placeholder="请输入用户昵称">
+                    </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-mima"></i>
                     <span class="form-item-label">用户密码</span>
-                    <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码">
+                    </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-querenmima"></i>
                     <span class="form-item-label">确认密码</span>
-                    <div class="form-item-input"><input type="text" length="15" name="confirm" placeholder="请确认用户密码"></div>
+                    <div class="form-item-input"><input type="text" length="15" name="confirm" placeholder="请确认用户密码">
+                    </div>
                 </div>
                 <div class="form-item">
                     <i class="iconfont icon-youxiang"></i>
                     <span class="form-item-label">用户邮箱</span>
                     <div class="form-item-input has-email">
                         <input type="text" name="email" length="15" placeholder="请输入用户邮箱">
-                        <span class="send-code" onclick="sendCodeOfReg()">发送验证码</span>
+                        <button class="send-code" onclick="sendCodeOfReg();return false;">发送验证码</button>
                     </div>
                 </div>
                 <div class="form-item">
@@ -58,19 +61,35 @@
     function closeRegisterMotal() {
         $('.register__html').hide();
     }
+    // 验证码效果,90秒后图片验证码自动刷新
+    function setSendBtn() {
+        var i = 90;
+        $(".send-code").html(i + "秒后重发").prop("disabled", "disabled");
+        var time = setInterval(function () {
+            i--;
+            if (i > 0) {
+                $(".send-code").html(i + "秒后重发").prop("disabled", "disabled");
+            } else {
+                clearInterval(time);
+                $(".send-code").html("重新获取").prop("disabled", "");
+            }
+        }, 1000);
+    }
     function sendCodeOfReg() {
-        const reg= /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        const reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
         const email = $("input[name=email]").val();
-        if(!reg.test(email)) return toast("邮箱格式有误！");
-        request('{:url("/admin/register/code")}',{email},function(){
-
+        if (!reg.test(email)) return toast("邮箱格式有误！");
+        request('{:url("/admin/register/code")}', { email }, function () {
+            setSendBtn()
         })
+        return false
     }
     function register() {
         const formData = $('#register__form').serializeArray()
         $('.form-item-submit').attr("disabled", true);
         request('{:url("/admin/register")}', formData, function (res) {
             $('#register__form')[0].reset()
+            $(".send-code").prop("disabled", "");
             toast(res.msg)
             closeRegisterMotal()
         }, 'post')

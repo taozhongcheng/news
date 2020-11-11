@@ -56,11 +56,12 @@
   background: #000;
 }
 .web__header-right {
-  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
   height: 100%;
-  width: 150px;
-  color: #000;
-  opacity: 0.8;
+  width: 80px;
+  color: #00A5EB;
 }
 .web__header-right .item {
   display: inline-block;
@@ -69,11 +70,7 @@
 .web__header-right-time {
   margin-right: 10px;
 }
-@media screen and (max-width: 1200px) {
-  .web__header {
-    height: 50px;
-    line-height: 50px;
-  }
+@media screen and (max-width: 1050px) {
   .web__header-logo {
     position: relative;
     z-index: 1000;
@@ -175,9 +172,39 @@
   .web__header-right {
     display: none;
   }
+  .web__header.web__app-header {
+    background: #fff;
+    z-index: 1000;
+  }
   .web__header.web__app-header .web__header-logo {
     width: 100%;
+    text-align: left;
     background: #fff;
+    padding-bottom: 10px;
+  }
+  .web__header.web__app-header .web__header-logo a {
+    width: 20%;
+    display: inline-block;
+    text-align: center;
+  }
+  .web__header.web__app-header .web__header-logo::after {
+    content: '';
+    height: 1px;
+    width: 200%;
+    background: #ccc;
+    position: absolute;
+    bottom: 10px;
+    left: -50%;
+    transform: scale(0.666);
+    -webkit-transform: scale(0.666);
+    z-index: 1000;
+  }
+  .web__header.web__app-header .web__header-right {
+    display: block;
+    height: 50px;
+    left: calc(20% + 20px);
+    top: 0;
+    z-index: 1000;
   }
   .web__header.web__app-header .web__header-list {
     position: relative;
@@ -243,6 +270,10 @@
   }
 }
 @media screen and (max-width: 750px) {
+  .web__header {
+    height: 50px;
+    line-height: 50px;
+  }
   .web__header-more {
     display: block;
   }

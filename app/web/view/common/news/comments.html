@@ -10,7 +10,7 @@
   <div class="comments__html-list">
   </div>
   <div class='empty__html'><i class='iconfont icon-kong2'></i></div>
-  <div class="list__loading"><img src="__STATIC__/image/loading.gif" alt="loading"></div>
+  <div class="list__loading"><img src="/common/image/loading.gif" alt="loading"></div>
 </div>
 <script>
   function healdPraise(id, type) {
@@ -58,7 +58,7 @@
       }
       $('#comment-num').html(data.data.total);
       if(lastPage > page){
-        $(".list__loading").html("<img src='__STATIC__/image/loading.gif' alt='loading'>")
+        $(".list__loading").html("<img src='/common/image/loading.gif' alt='loading'>")
       }else{
         switchs = true;
         $(".list__loading").html('<p>没有更多了</p>')

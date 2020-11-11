@@ -9,7 +9,6 @@
  */
   namespace app\common\model;
   use think\Model;
-  use think\Session;
 
   class Admin extends Model{
 
@@ -18,8 +17,8 @@
       if(!$validate->scene('add')->check($data)){
         return $validate->getError();
       }
-    if ($data['code'] != Session::get('code')) {
-      return 'a='.$data['code'].'b='.Session::get('code');
+    if ($data['code'] != session('code')) {
+      return '验证码有误！';
     }
       $row = model('Admin')->allowField(true)->save($data);
       if($row){

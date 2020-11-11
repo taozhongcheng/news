@@ -21,9 +21,22 @@ return [
    'view_replace_str' =>[
      '__COCO__' => '我是替换coco啊'
    ],
-  'app_debug' => true,
+  'session'                => [
+    'id'             => '',
+    // SESSION_ID的提交变量,解决flash上传跨域
+    'var_session_id' => '',
+    // SESSION 前缀
+    'prefix'         => 'think',
+    // 驱动方式 支持redis memcache memcached
+    'type'           => '',
+    // 是否自动开启 SESSION
+    'auto_start'     => true,
+   // 'httponly'       => true,
+   // 'secure'         => true,
+  ],
   // 禁止访问模块
   'deny_module_list' => [],
+  'app_debug' => true,
   //抛出 HTTP 异常
   'http_exception_template' => [
     404 => APP_PATH . '404.html',
