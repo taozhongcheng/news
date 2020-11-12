@@ -127,14 +127,30 @@
   border: none;
 }
 @media screen and (max-width: 450px) {
+  .register__html {
+    position: absolute;
+  }
   .register__html-warp {
     width: 100%;
     bottom: 0;
     left: 0;
-    padding: 20px 15px 50px;
+    padding: 10px 15px 20px;
     box-sizing: border-box;
     transform: translate(0%, 0%);
     -webkit-transform: translate(0%, 0%);
     border-radius: 8px 8px 0 0;
+  }
+  .register__html-warp-head {
+    line-height: 20px;
+    padding: 5px 0;
+  }
+  .register__html-warp-head span {
+    font-size: 20px;
+  }
+  .register__html-warp-mid .form-item {
+    margin-bottom: 0px;
+  }
+  .register__html-warp-mid .form-item .form-item-submit {
+    margin-top: 10px;
   }
 }

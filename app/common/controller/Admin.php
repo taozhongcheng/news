@@ -40,7 +40,8 @@ class Admin extends Controller
     ];
     $res = model('Admin')->login($data);
     if ($res === 1) {
-      session('login',true);
+      $userInfo = model('Admin')->where('email',$data['email'])->find() || ['nicename'=>null];
+      session('userInfo',$userInfo);
       return $this->success('登录成功！');
     } else {
       return $this->error($res);

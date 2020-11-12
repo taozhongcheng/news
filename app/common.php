@@ -97,15 +97,15 @@ function sendEmail($title,$desc_content, $toemail)
 	$mail->CharSet = "UTF-8"; //字符集  
 	$mail->Encoding = "base64"; //编码方式  
 
-	// $mail->Host = 'smtp.qq.com'; //以qq邮箱为例子 
-	// $mail->Username = '1849847528@qq.com';  //发件人邮箱 
-	// $mail->Password = 'ahewugbsnugydcba';  //qq发件人密码 ==>重点：是授权码，不是邮箱密码  ahewugbsnugydcba
-	// $mail->From = '1849847528@qq.com';  //发件人邮箱 
+	$mail->Host = 'smtp.qq.com'; //以qq邮箱为例子 
+	$mail->Username = '1849847528@qq.com';  //发件人邮箱 
+	$mail->Password = 'ahewugbsnugydcba';  //qq发件人密码 ==>重点：是授权码，不是邮箱密码  ahewugbsnugydcba
+	$mail->From = '1849847528@qq.com';  //发件人邮箱 
 
- 	$mail->Host = 'smtp.163.com'; //SMTP服务器 
- 	$mail->Username = 'cocotaos@163.com';  //发件人邮箱 
-	$mail->Password = 'UKEGYXYAMNFQOYDH';  //163发件人密码 ==>重点：是授权码，不是邮箱密码   UKEGYXYAMNFQOYDH   
-	$mail->From = 'cocotaos@163.com';  //发件人邮箱 
+ 	// $mail->Host = 'smtp.163.com'; //SMTP服务器 
+ 	// $mail->Username = 'cocotaos@163.com';  //发件人邮箱 
+	// $mail->Password = 'UKEGYXYAMNFQOYDH';  //163发件人密码 ==>重点：是授权码，不是邮箱密码   UKEGYXYAMNFQOYDH   
+	// $mail->From = 'cocotaos@163.com';  //发件人邮箱 
 
 	$mail->FromName = 'cocotao新闻网';  //发件人姓名  
 	$mail->AddAddress($toemail); //添加收件人 
