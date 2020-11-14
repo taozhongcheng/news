@@ -79,7 +79,7 @@
         const reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
         const email = $("input[name=email]").val();
         if (!reg.test(email)) return toast("邮箱格式有误！");
-        request('{:url("/admin/register/code")}', { email }, function () {
+        request('{:url("/web/admin/register/code")}', { email }, function () {
             setSendBtn()
         })
         return false
@@ -87,7 +87,7 @@
     function register() {
         const formData = $('#register__form').serializeArray()
         $('.form-item-submit').attr("disabled", true);
-        request('{:url("/admin/register")}', formData, function (res) {
+        request('{:url("/web/admin/register")}', formData, function (res) {
             $('#register__form')[0].reset()
             $(".send-code").prop("disabled", "");
            // $(".web__header").removeClass('web__app-header');

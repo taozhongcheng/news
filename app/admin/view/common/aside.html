@@ -1,0 +1,39 @@
+<div class="admin__mid-aside">
+  <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+    <li class="layui-nav-item  layui-nav-itemed"><a href="{:url('admin/index')}">后台首页</a></li>
+    <li class="layui-nav-item layui-nav-itemed">
+      <a href="javascript:;">栏目管理</a>
+      <dl class="layui-nav-child">
+        <dd><a href="{:url('admin/cate/list')}">栏目列表</a></dd>
+        <dd><a href="{:url('admin/cate/add')}">栏目添加</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item layui-nav-itemed">
+      <a href="javascript:;">文章管理</a>
+      <dl class="layui-nav-child">
+        <dd><a href="{:url('admin/articl/list')}">文章列表</a></dd>
+        <dd><a href="{:url('admin/articl/add')}">文章添加</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item layui-nav-itemed">
+        <a href="javascript:;">会员管理</a>
+        <dl class="layui-nav-child">
+          <dd><a href="{:url('admin/admin/list')}">会员列表</a></dd>
+          <dd><a href="{:url('admin/admin/add')}">会员添加</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item  layui-nav-itemed"><a href="{:url('admin/cate/add')}">系统设置</a></li>
+  </ul>
+
+</div>
+  <script>
+    layui.use(['element','layer'], function(){
+      var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+      var layer = layui.layer;  //layer初始化
+      //监听导航点击
+      element.on('nav(demo)', function(elem){
+        //console.log(elem)
+        layer.msg(elem.text());
+      });
+    });
+     </script>

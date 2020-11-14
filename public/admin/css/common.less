@@ -1,0 +1,58 @@
+.admin{
+    min-height: 100vh;
+    &__header{
+        padding: 0 20px;
+        line-height: 70px;
+        background-color: #23262E;
+        color: #fff;
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+         -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+        position: relative;
+        &-name{
+            font-size: 22px;
+            opacity: 0.6;
+        }
+        &-user{
+           
+            position: absolute;
+            right: 0;
+            top: 0;
+            .layui-nav {
+                background-color: transparent;
+            }
+        }
+    }
+    &__mid{
+        &-aside{
+            float: left;
+            width: 200px;
+            min-height: calc(100vh - 70px);
+            background-color: #23262E;
+        }
+        &-content{
+            position: relative;
+            padding-top: 60px;
+            margin: 0 20px 20px;
+            float: left;
+            width: calc(100% - 240px);
+        }
+    }
+    &__footer{
+        // line-height: 150px;
+        // background: #000;
+    }
+    .layui-breadcrumb{
+        position: absolute;
+        left: -20px;
+        top: 0;
+        width: calc(100% + 20px);
+        padding-left: 20px;
+       line-height: 40px;
+        background: #fff;
+        display: block;
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+        -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.15);
+    }
+}

@@ -25,8 +25,8 @@ class Admin extends Controller
     ];
     $res = model('Admin')->register($data);
     if ($res === 1) {
-      sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
-      session('code', null);
+     // sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
+     // session('code', null);
       return $this->success('注册成功！');    
     } else {
       return $this->error($res);
@@ -40,7 +40,7 @@ class Admin extends Controller
     ];
     $res = model('Admin')->login($data);
     if ($res === 1) {
-      $userInfo = model('Admin')->where('email',$data['email'])->find() || ['nicename'=>null];
+      $userInfo = model('Admin')->userInfo($data);
       session('userInfo',$userInfo);
       return $this->success('登录成功！');
     } else {

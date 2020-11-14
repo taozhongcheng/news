@@ -45,7 +45,7 @@
   function login() {
     const formData = $('#login__form').serializeArray()
     $('.form-item-submit').attr("disabled", true);
-    request('{:url("/admin/login")}', formData, function (res) {
+    request('{:url("/web/admin/login")}', formData, function (res) {
       $('#login__form')[0].reset()
       toast(res.msg)
       closeLoginMotal()

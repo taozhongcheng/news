@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1605097000;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1605097000;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1605097000;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\login.html";i:1605097000;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1605097000;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1605277566;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1605282446;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\login.html";i:1605282460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -73,9 +73,15 @@
       <div class="web__header-right-time item" onclick="openRegisterMotal()">
          注册
       </div>
+      <?php if(!\think\Session::get('userInfo.user_id')): ?>
       <div class="web__header-right-weatch item" onclick="openLoginMotal()">
         登录
       </div>
+      <?php else: ?>
+      <div class="web__header-right-weatch item" onclick="openLoginMotal()">
+        投稿
+      </div>
+      <?php endif; ?>
     </div>
     <div class="web__header-motal"></div>
   </div>
@@ -179,7 +185,7 @@
         const reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
         const email = $("input[name=email]").val();
         if (!reg.test(email)) return toast("邮箱格式有误！");
-        request('<?php echo url("/admin/register/code"); ?>', { email }, function () {
+        request('<?php echo url("/web/admin/register/code"); ?>', { email }, function () {
             setSendBtn()
         })
         return false
@@ -187,7 +193,7 @@
     function register() {
         const formData = $('#register__form').serializeArray()
         $('.form-item-submit').attr("disabled", true);
-        request('<?php echo url("/admin/register"); ?>', formData, function (res) {
+        request('<?php echo url("/web/admin/register"); ?>', formData, function (res) {
             $('#register__form')[0].reset()
             $(".send-code").prop("disabled", "");
            // $(".web__header").removeClass('web__app-header');
@@ -246,7 +252,7 @@
   function login() {
     const formData = $('#login__form').serializeArray()
     $('.form-item-submit').attr("disabled", true);
-    request('<?php echo url("/admin/login"); ?>', formData, function (res) {
+    request('<?php echo url("/web/admin/login"); ?>', formData, function (res) {
       $('#login__form')[0].reset()
       toast(res.msg)
       closeLoginMotal()

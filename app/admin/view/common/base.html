@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/common/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/common/css/style.css?v={$version}">
+    <link rel="stylesheet" href="/admin/css/common.css?=v{$version}">
+    <title>{block name="title"}后台{/block}</title>
+
+    <script src="/common/layui/layui.js"></script>
+    <script src="/common/js/jquery-3.2.1.min.js"></script>
+    <script src="/common/js/request.js?v={$version}"></script>
+    <script src="/common/js/utils.js?v={$version}"></script>
+</head>
+<body>
+    <div class="admin">
+        {include file="/common/header" /}
+        <div class="admin__mid clearfix">
+                {include file="/common/aside" /}
+                <div class="admin__mid-content">
+                    {block name="content"}中心部分{/block}
+                </div>
+        </div>
+    </div>
+</body>
+</html>

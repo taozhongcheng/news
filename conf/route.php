@@ -8,7 +8,25 @@ use think\Route;
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp/conf/route.php
  */
+ 
+Route::rule('/admin/login','admin/login/login','get|post');
+Route::rule('/admin/register','admin/login/register','get|post');
+Route::rule('/admin/index','admin/index/index','get|post');
 
+Route::rule('/admin/admin/list','admin/admin/list','get');
+Route::rule('/admin/admin/add','admin/admin/add','get|post');
+Route::rule('/admin/admin/edit','admin/admin/edit','get|post');
+
+Route::rule('/admin/articl/list','admin/articl/list','get');
+Route::rule('/admin/articl/add','admin/articl/add','get|post');
+Route::rule('/admin/articl/edit','admin/articl/edit','get|post');
+
+Route::rule('/admin/cate/list','admin/cate/list','get');
+Route::rule('/admin/cate/add','admin/cate/add','get|post');
+Route::rule('/admin/cate/edit','admin/cate/edit','get|post');
+
+
+// 前台
 Route::rule('/','web/index/index','get');
 Route::rule('/news/:type$','web/category/list','get');   //文章类型列表页面
 Route::rule('/news/list','web/category/newsList','get');   //文章类型列表数据
@@ -21,6 +39,6 @@ Route::rule('/news/comment/send','web/news/commentSend','post'); // 发表评论
 Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论列表
 
 
-Route::rule('/admin/register','common/admin/register','post'); // 用户注册
-Route::rule('/admin/register/code', 'common/admin/code', 'get'); // 用户注册发送验证码
-Route::rule('/admin/login', 'common/admin/login', 'post'); // 用户登录
+Route::rule('/web/admin/register','common/admin/register','post'); // 用户注册
+Route::rule('/web/admin/register/code', 'common/admin/code', 'get'); // 用户注册发送验证码
+Route::rule('/web/admin/login', 'common/admin/login', 'post'); // 用户登录

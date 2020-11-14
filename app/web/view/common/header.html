@@ -35,9 +35,15 @@
       <div class="web__header-right-time item" onclick="openRegisterMotal()">
          注册
       </div>
+      {if condition="!$Think.session.userInfo.user_id"}
       <div class="web__header-right-weatch item" onclick="openLoginMotal()">
         登录
       </div>
+      {else if/}
+      <div class="web__header-right-weatch item" onclick="openLoginMotal()">
+        投稿
+      </div>
+      {/if}
     </div>
     <div class="web__header-motal"></div>
   </div>

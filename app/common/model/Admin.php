@@ -7,24 +7,28 @@
  * @Description: In User Settings Edit
  * @FilePath: /news/app/common/model/Admin.php
  */
-  namespace app\common\model;
-  use think\Model;
 
-  class Admin extends Model{
+namespace app\common\model;
 
-    public function register($data){
-      $validate = new \app\common\validate\Admin();
-      if(!$validate->scene('register')->check($data)){
-        return $validate->getError();
-      }
+use think\Model;
+
+class Admin extends Model
+{
+
+  public function register($data)
+  {
+    $validate = new \app\common\validate\Admin();
+    if (!$validate->scene('register')->check($data)) {
+      return $validate->getError();
+    }
     if ($data['code'] != session('code')) {
       return '验证码有误！';
     }
-      $row = model('Admin')->allowField(true)->save($data);
-      if($row){
-        return 1;
-      }
+    $row = model('Admin')->allowField(true)->save($data);
+    if ($row) {
+      return 1;
     }
+  }
 
   public function login($data)
   {
@@ -35,10 +39,14 @@
     $row = model('Admin')->get($data);
     if ($row) {
       return 1;
-    }else{
+    } else {
       return '登录账号或密码错误！';
     }
   }
-  }
 
-  
+  public function userInfo($data){
+    $row= model('Admin')->where($data)->find();
+    if($row) return $row;
+    return 1;
+  }
+}
