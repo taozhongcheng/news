@@ -13,9 +13,10 @@ Route::rule('/admin/login','admin/login/login','get|post');
 Route::rule('/admin/register','admin/login/register','get|post');
 Route::rule('/admin/index','admin/index/index','get|post');
 
-Route::rule('/admin/admin/list','admin/admin/list','get');
-Route::rule('/admin/admin/add','admin/admin/add','get|post');
-Route::rule('/admin/admin/edit','admin/admin/edit','get|post');
+Route::rule('/admin/admin/list','admin/admin/list','get'); // 会员列表页面
+Route::rule('/admin/admin/add','admin/admin/add','get'); // 添加会员页面
+Route::rule('/admin/admin/edit/:id','admin/admin/edit','get'); // 修改会员页面
+
 
 Route::rule('/admin/articl/list','admin/articl/list','get');
 Route::rule('/admin/articl/add','admin/articl/add','get|post');
@@ -39,6 +40,11 @@ Route::rule('/news/comment/send','web/news/commentSend','post'); // 发表评论
 Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论列表
 
 
+// 公共api
 Route::rule('/web/admin/register','common/admin/register','post'); // 用户注册
+Route::rule('/web/admin/edit','common/admin/edit','post'); // 用户编辑
 Route::rule('/web/admin/register/code', 'common/admin/code', 'get'); // 用户注册发送验证码
 Route::rule('/web/admin/login', 'common/admin/login', 'post'); // 用户登录
+Route::rule('/web/admin/freeze','common/admin/freeze','post'); // 冻结会员
+Route::rule('/web/admin/list','common/admin/list','get'); // 会员列表
+Route::rule('/web/admin/del','common/admin/del','get');// 删除会员

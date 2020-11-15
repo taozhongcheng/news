@@ -15,16 +15,35 @@ use think\Model;
 class Admin extends Model
 {
 
-  public function register($data)
+  public function register($data,$hasCode=true)
   {
     $validate = new \app\common\validate\Admin();
     if (!$validate->scene('register')->check($data)) {
       return $validate->getError();
     }
-    if ($data['code'] != session('code')) {
+    if ($hasCode && $data['code'] != session('code')) {
       return '验证码有误！';
     }
     $row = model('Admin')->allowField(true)->save($data);
+    if ($row) {
+      return 1;
+    }
+  }
+
+  public function edit($data,$hasCode=true){
+    $validate = new \app\common\validate\Admin();
+    if(!$validate->scene('edit')->check($data)){
+      return $validate->getError();
+    }
+    if ($hasCode && $data['code'] != session('code')) {
+      return '验证码有误！';
+    }
+    $userInfo = model('Admin')->get($data['user_id']);
+    $userInfo->nickname = $data['nickname'];
+    $userInfo->password = $data['password'];
+    $userInfo->email  = $data['email'];
+    $userInfo->freeze = $data['freeze'];
+    $row = $userInfo->save();
     if ($row) {
       return 1;
     }
@@ -48,5 +67,22 @@ class Admin extends Model
     $row= model('Admin')->where($data)->find();
     if($row) return $row;
     return 1;
+  }
+
+  public function list($data){
+    $row = model('Admin')->order('create_time','desc')->paginate($data['limit'],null,['page'=>$data['page']]);
+    $list = $row->items();
+    return [
+      'count' => $row->total(),
+      'data' => $list
+    ];
+  }
+
+  // 冻结账号
+  public function freeze($data){
+    $userInfo = model('Admin')->get($data['user_id']);
+    $userInfo->freeze = $data['freeze'];
+    $row = $userInfo->save();
+    if($row) return 1;
   }
 }

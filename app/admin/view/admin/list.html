@@ -5,5 +5,76 @@
 		<a href="javascript:;">会员管理</a>
 		<a href="javascript:;">会员列表</a>
 	</span>
-	 
+    <div class="layui-btn-group demoTable">
+        <a class="layui-btn" href="{:url('/admin/admin/add')}">新增会员</a>
+      </div>
+       
+      <table class="layui-table" lay-data="{width:1200, url:'/web/admin/list', page:true, id:'idTest'}" lay-filter="demo">
+        <thead>
+          <tr data-id="{{d.user_id}}">
+            <th lay-data="{type:'checkbox', fixed: 'left',width:60}"></th>
+            <th lay-data="{field:'user_id',width:120}">ID</th>
+            <th lay-data="{field:'nickname',width:170}">用户昵称</th>
+            <th lay-data="{field:'image',width:112,templet: '#imgtmp',align:'center'}">图像</th>
+            <th lay-data="{field:'email',width:170}">邮箱</th>
+            <th lay-data="{field:'password',width:150}">密码</th>
+            <th lay-data="{field:'create_time',width:170}">注册时间</th>
+            <th lay-data="{field:'image',width:89,templet: '#freezetmp',align:'center'}">冻结</th>
+            <th lay-data="{fixed: 'right', width:148, align:'center', toolbar: '#barDemo'}">操作</th>
+          </tr>
+        </thead>
+      </table>
+       
+      <script type="text/html" id="imgtmp">
+         <img src="{{d.image}}" style="height:80%">
+      </script>
+      <script type="text/html" id="freezetmp">
+        <input type="checkbox" {{d.freeze == 1?'checked':''}} name="open" lay-skin="switch" lay-text="ON|OFF" lay-filter="switchTest" title="开关">
+     </script>
+      <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+      </script>
+{/block}
+
+{block name="js"}
+<script>
+   layui.use(['table','form'], function(){
+  var table = layui.table;
+  var form = layui.form;
+  //监听表格复选框选择
+  table.on('checkbox(demo)', function(obj){
+     
+  });
+  //监听工具条
+  table.on('tool(demo)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'del'){
+      layer.confirm('真的要删除么？', function(index){
+        del(obj,index)
+      });
+    } else if(obj.event === 'edit'){
+       window.location.href= `/admin/admin/edit/${data.user_id}.html`
+    }
+  });
+
+  //冻结开关
+form.on('switch(switchTest)', function(obj){      
+	var freeze = obj.elem.checked?1:0;
+  var user_id = obj.othis.parents('tr').find("td").eq(1).text();
+  request("{:url('/web/admin/freeze')}",{user_id,freeze},function(res){
+    layer.msg(res.msg,{icon:1})
+  },'post')
+                        
+});         
+
+  function del(obj,index){
+      request("{:url('/web/admin/del')}",{user_id:obj.data.user_id},function(res){
+          layer.msg(res.msg,{icon:1});
+          obj.del();
+          layer.close(index);
+      })
+  }
+});
+</script>
 {/block}
