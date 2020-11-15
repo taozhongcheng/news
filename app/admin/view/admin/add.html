@@ -84,6 +84,7 @@
 	  //监听提交
 	  form.on('submit(submit)', function(data){
 		const params = data;
+		params.field.hasCode = 0;
 		params.field.freeze = params.field.freeze ? 1: 0;
 	   	params.field.user_id ? edit(params.field) :add(params.field);
 		return false;

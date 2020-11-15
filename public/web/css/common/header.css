@@ -58,16 +58,23 @@
   position: absolute;
   right: 20px;
   top: 0;
-  height: 100%;
-  width: 80px;
   color: #00A5EB;
 }
 .web__header-right .item {
-  display: inline-block;
   cursor: pointer;
-}
-.web__header-right-time {
   margin-right: 10px;
+  float: left;
+}
+.web__header-right a {
+  color: #fff;
+  background: #00A5EB;
+  line-height: 20px;
+  padding: 5px 10px;
+  display: inline;
+  font-size: 14px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-top: 12px;
 }
 @media screen and (max-width: 1050px) {
   .web__header-logo {

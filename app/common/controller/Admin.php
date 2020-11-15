@@ -24,14 +24,14 @@ class Admin extends Controller
       'confirm' => input('post.confirm'),
       'email' => input('post.email'),
       'code' => input('post.code'),
+      'hasCode' =>  +input('post.hasCode'),
       'freeze' => input('post.freeze') ? input('post.freeze') : 0
     ];
-    $hasCode =  $data['code'] ? true : false;
-    $res = model('Admin')->register($data, $hasCode);
+    $res = model('Admin')->register($data, $data['hasCode']);
     if ($res === 1) {
-      if ($hasCode) {
-        sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
-        session('code', null);
+      if ($data['hasCode']) {
+       sendEmail('cocotao新闻网注册通知', "恭喜您注册成功！用户昵称：" . $data['nickname'] . "；用户密码：" . $data['password'], $data['email']);
+       session('code', null);
       }
       return $this->success('注册成功！');
     } else {
@@ -89,22 +89,33 @@ class Admin extends Controller
     }
   }
 
-  // 会员登录
-  public function login()
+  // 会员退出登录
+  public function loginOut()
   {
     $data = [
-      'email' => input('post.email'),
-      'password' => input('post.password'),
+      'user_id' => input('get.user_id')
     ];
-    $res = model('Admin')->login($data);
-    if ($res === 1) {
-      $userInfo = model('Admin')->userInfo($data);
-      session('userInfo', $userInfo);
-      return $this->success('登录成功！');
-    } else {
-      return $this->error($res);
-    }
+    session('userInfo',null);
+    return $this->success('退出登录成功！');
   }
+
+    // 会员登录
+    public function login()
+    {
+      $data = [
+        'email' => input('post.email'),
+        'password' => input('post.password'),
+      ];
+      $res = model('Admin')->login($data);
+      if ($res === 1) {
+        $userInfo = model('Admin')->userInfo($data);
+        session('userInfo', $userInfo);
+        $this->assign('userInfo',$userInfo);
+        return $this->success('登录成功！');
+      } else {
+        return $this->error($res);
+      }
+    }
 
   // 冻结账号
   public function freeze()

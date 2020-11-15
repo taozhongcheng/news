@@ -86,6 +86,7 @@
     }
     function register() {
         const formData = $('#register__form').serializeArray()
+        formData.push({name:'hasCode',value:1});
         $('.form-item-submit').attr("disabled", true);
         request('{:url("/web/admin/register")}', formData, function (res) {
             $('#register__form')[0].reset()

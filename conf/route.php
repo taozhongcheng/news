@@ -45,6 +45,7 @@ Route::rule('/web/admin/register','common/admin/register','post'); // 用户注�
 Route::rule('/web/admin/edit','common/admin/edit','post'); // 用户编辑
 Route::rule('/web/admin/register/code', 'common/admin/code', 'get'); // 用户注册发送验证码
 Route::rule('/web/admin/login', 'common/admin/login', 'post'); // 用户登录
+Route::rule('/web/admin/loginOut', 'common/admin/loginOut', 'get'); // 用户退出登录
 Route::rule('/web/admin/freeze','common/admin/freeze','post'); // 冻结会员
 Route::rule('/web/admin/list','common/admin/list','get'); // 会员列表
 Route::rule('/web/admin/del','common/admin/del','get');// 删除会员

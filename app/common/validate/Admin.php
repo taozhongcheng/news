@@ -23,7 +23,7 @@ use think\Validate;
   protected $scene=[
     'register' =>['nickname','password', 'confirm','email','freeze'],
     'login' => ['email'=>'require|email', 'password'=> 'require'],
-    'edit' => ['nickname','email'=>'require|email','password','confirm','freeze','user_id'],
+    'edit' => ['nickname','email','password','confirm','freeze','user_id'],
     'freeze' => ['user_id','freeze']
   ];
  }

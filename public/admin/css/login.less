@@ -1,0 +1,102 @@
+.login__html {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: url("/admin/image/login.jpg") no-repeat center/cover;
+  &-content {
+    width: 300px;
+   
+    position: absolute;
+    right: 15%;
+    bottom: 25%;
+    -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+    &-mid{
+        background: #fff;
+        padding: 20px;
+        background-image: linear-gradient(180deg, #b9d7e4 1%, #ffffff 33%);
+        h3 {
+            line-height: 40px;
+            text-align: center;
+            font-size: 20px;
+            color: #000;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+          }
+          form {
+      
+            .layui-input-block {
+              margin-left: 0px;
+            }
+            .has-btns{
+                padding-top: 10px;
+                text-align: center;
+                .layui-btn{
+                  display: inline-block;
+                  width: 100%;
+                  box-sizing: border-box;
+                }
+            }
+          }
+          .heald-btns{ 
+              .regirse{
+                  color: #999;
+              }
+              .password{
+                  float: right;
+                  color: #427fed;
+              }
+          }
+    }
+    .des{
+        margin-top: 10px;
+        background: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        text-shadow: 3px 3px 3px #FF0000;
+        font-style: italic;
+        text-align: center;
+    }
+  }
+}
+
+.regirse__html{
+    .content{
+      width: 350px;
+        form{
+            .layui-form-label {
+                width: 80px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 9px 0;
+              }
+              .layui-input-block {
+                margin-left: 80px ;
+              }
+              .has-btns{
+                margin-left: 0;
+              }
+              .has-code{
+                  position: relative;
+                  .layui-input{
+                      width:65% ;
+                  }
+                  .send__code{
+                      position: absolute;
+                      right: 0;
+                      top:0;
+                      width: 35%;
+                      height: 38px;
+                      background: royalblue;
+                      border: none;
+                      color: #fff;
+                      text-align: center;
+                      line-height: 38px;
+                      cursor: pointer;
+                  }
+              }
+        }
+    }
+
+}

@@ -31,7 +31,8 @@ class Base extends Controller
       'hotList' => $hotList,   // 右侧头条看点
       'week' => $week,     // 星期几
       'linkList' => $linkList,  // 友情链接
-      'seo' => config("seo")['default']
+      'seo' => config("seo")['default'],
+      'userInfo' => session("userInfo"),
     ];
     $this->view->share($viewData);
   }

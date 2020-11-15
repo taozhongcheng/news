@@ -15,8 +15,9 @@ use think\Model;
 class Admin extends Model
 {
 
-  public function register($data,$hasCode=true)
+  public function register($data,$hasCode)
   {
+   
     $validate = new \app\common\validate\Admin();
     if (!$validate->scene('register')->check($data)) {
       return $validate->getError();
@@ -56,10 +57,14 @@ class Admin extends Model
       return $validate->getError();
     }
     $row = model('Admin')->get($data);
-    if ($row) {
-      return 1;
-    } else {
+
+    if(!$row) {
       return '登录账号或密码错误！';
+    }
+    else if ($row && $row['freeze']==0) {
+      return 1;
+    } else if($row && $row['freeze']==1){
+      return '账号已被冻结！';
     }
   }
 

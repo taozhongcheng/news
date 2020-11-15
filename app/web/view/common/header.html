@@ -32,17 +32,20 @@
       </div>
     </div>
     <div class="web__header-right">
-      <div class="web__header-right-time item" onclick="openRegisterMotal()">
-         注册
-      </div>
-      {if condition="!$Think.session.userInfo.user_id"}
-      <div class="web__header-right-weatch item" onclick="openLoginMotal()">
+      {if condition="!$userInfo"}
+      <div class="web__header-right-time1 item" onclick="openRegisterMotal()">
+        注册
+     </div>
+      <div class="web__header-right-item1 item" onclick="openLoginMotal()">
         登录
       </div>
       {else if/}
-      <div class="web__header-right-weatch item" onclick="openLoginMotal()">
-        投稿
+      <div class="web__header-right-item2 item">
+         {$userInfo.nickname}
       </div>
+      <a href="{:url('/admin/index')}" class="web__header-right-item2 item">
+         个人后台
+     </a>
       {/if}
     </div>
     <div class="web__header-motal"></div>
