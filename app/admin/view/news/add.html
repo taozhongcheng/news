@@ -1,0 +1,124 @@
+{extend name="/common/base" /}
+
+{block name="content"}
+	<span class="layui-breadcrumb clearfix">
+		<a href="javascript:;">资讯管理</a>
+		<a href="javascript:;">资讯{if condition="$detail"}编辑{else /}添加{/if}</a>
+	</span>
+	<form class="layui-form admin__form" lay-filter="example">
+		<div class="layui-form-item" style="display: none;">
+			<label class="layui-form-label">用户id</label>
+			<div class="layui-input-block">
+			  <input type="text" name="user_id" autocomplete="off" placeholder="请输入用户昵称" class="layui-input">
+			</div>
+		  </div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">用户昵称</label>
+		  <div class="layui-input-block">
+			<input type="text" name="nickname" lay-verify="nickname" autocomplete="off" placeholder="请输入用户昵称" class="layui-input">
+		  </div>
+		</div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">登录密码</label>
+		  <div class="layui-input-block">
+			<input type="password" name="password" lay-verify="password" placeholder="请输入登录密码" autocomplete="off" class="layui-input">
+		  </div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+			  <input type="password" name="confirm" lay-verify="confirm" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+			</div>
+		  </div>
+		  <div class="layui-form-item">
+			<label class="layui-form-label">用户邮箱</label>
+			<div class="layui-input-block">
+			  <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="请输入用户邮箱" class="layui-input">
+			</div>
+		  </div>
+		<div class="layui-form-item">
+		  <label class="layui-form-label">是否冻结</label>
+		  <div class="layui-input-block">
+			<input type="checkbox" name="freeze" lay-skin="switch" lay-text="ON|OFF">
+		  </div>
+		</div>
+		
+		<div class="layui-form-item">
+		  <div class="layui-input-block">
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			<button type="submit" class="layui-btn" lay-submit="" lay-filter="submit">立即提交</button>
+		  </div>
+		</div>
+	</form>
+{/block}
+
+{block name="js"}
+<script>
+	layui.use(['form', 'layedit'], function(){
+	  var form = layui.form,
+	  	 layer = layui.layer,
+		layedit = layui.layedit;
+	  
+	  //创建一个编辑器
+	  var editIndex = layedit.build('LAY_demo_editor');
+	 
+	  //自定义验证规则
+	  form.verify({
+		nickname: [
+			/^[\S]{1,12}$/
+		  ,'昵称必须少于12位，且不能出现空格'	
+		],
+		password: [
+		  /^[\S]{6,12}$/
+		  ,'密码必须6到12位，且不能出现空格'
+		],
+		confirm: [
+		  /^[\S]{6,12}$/
+		  ,'确认密码必须6到12位，且不能出现空格'
+		],
+		content: function(value){
+		  layedit.sync(editIndex);
+		}
+	  });
+	  
+	  //监听提交
+	  form.on('submit(submit)', function(data){
+		const params = data;
+		params.field.hasCode = 0;
+		params.field.freeze = params.field.freeze ? 1: 0;
+	   	params.field.user_id ? edit(params.field) :add(params.field);
+		return false;
+	  });
+	 
+	 // 新增会员
+	 function add(params){
+		request("{:url('/web/admin/register')}",params,function(res){
+			layer.msg('添加成功！', {icon: 1},function(){
+				window.location.href ="{:url('/admin/admin/list')}"
+			})
+		},'post')	
+	 }
+	 // 编辑会员
+	 function edit(params){
+		request("{:url('/web/admin/edit')}",params,function(res){
+			layer.msg('编辑成功！', {icon: 1},function(){
+				window.location.href ="{:url('/admin/admin/list')}"
+			})
+		},'post')	
+	 }
+	  // 会员详情表单赋值
+	 (function setVal(data){
+		 if(!data) return
+		form.val('example', {
+		  "user_id":data.user_id,
+		  "nickname": data.nickname, 
+		  "password": data.password,
+		  "confirm": data.password,
+		  "email": data.email,
+		  "freeze": +data.freeze === 1, //开关状态
+		});
+	 })({$detail})
+	 
+	});
+	</script>
+{/block}

@@ -1,0 +1,131 @@
+{extend name="/common/base" /}
+
+{block name="content"}
+<span class="layui-breadcrumb clearfix">
+  <a href="javascript:;">资讯管理</a>
+  <a href="javascript:;">资讯列表</a>
+</span>
+<div class="search__html">
+  <form class="layui-form layui-form-pane">
+    <div class="layui-form-item layui-inline">
+      <label class="layui-form-label">资讯标题</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" autocomplete="off" placeholder="请输入资讯标题" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item layui-inline">
+      <label class="layui-form-label">资讯类别</label>
+      <div class="layui-input-inline">
+        <select name="channel" placeholder="请选择资讯类别">
+          <option value=""></option>
+          <option value="头条">头条</option>
+          <option value="财经">财经</option>
+          <option value="科技">科技</option>
+          <option value="军事">军事</option>
+          <option value="娱乐">娱乐</option>
+          <option value="体育">体育</option>
+          <option value="教育">教育</option>
+          <option value="NBA">NBA</option>
+          <option value="股票">股票</option>
+          <option value="女性">女性</option>
+          <option value="星座">星座</option>
+          <option value="育儿">育儿</option>
+          <option value="健康">健康</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item layui-inline">
+      <label class="layui-form-label">资讯来源</label>
+      <div class="layui-input-inline">
+        <input type="text" name="src" placeholder="请输入资讯来源" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item layui-inline">
+      <label class="layui-form-label">发布日期</label>
+      <div class="layui-input-inline">
+        <input type="text" name="time" class="layui-input" id="date" placeholder=" - ">
+      </div>
+    </div>
+    <div class="layui-form-item layui-inline">
+      <button type="submit" class="layui-btn" lay-submit="" lay-filter="submit">查询</button>
+    </div>
+  </form>
+</div>
+  <div class="layui-btn-group demoTable">
+    <a class="layui-btn" href="{:url('/admin/news/add')}">新增资讯</a>
+  </div>
+<table class="layui-table" lay-data="{ url:'/web/news/list', page:true, id:'table'}" lay-filter="demo">
+  <thead>
+    <tr>
+      <th lay-data="{type:'checkbox', fixed: 'left',width:60}"></th>
+      <th lay-data="{field:'id',width:180}">ID</th>
+      <th lay-data="{field:'title',minWidth:400}">标题</th>
+      <th lay-data="{field:'cover',minWidth:300,templet:'#imgtmp',align:'center'}">封面</th>
+      <th lay-data="{field:'channel',width:70}">类别</th>
+      <th lay-data="{field:'src',width:120}">来源</th>
+      <th lay-data="{field:'create_time',width:170}">发布时间</th>
+      <th lay-data="{fixed: 'right', width:148, align:'center', toolbar: '#barDemo'}">操作</th>
+    </tr>
+  </thead>
+</table>
+
+<script type="text/html" id="imgtmp">
+    {{# for (var i=0,len=d.cover;i<d.cover.length;i++){}}
+      <img src="{{ len[i]}}"  alt="图片{{i}}" style=" width:80px;height: 80px;object-fit: cover;">
+    {{# }}}
+</script>
+
+<script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+{/block}
+
+{block name="js"}
+<script>
+  layui.use(['table','laydate','form'], function () {
+    var table = layui.table;
+    var laydate = layui.laydate;
+    var form = layui.form;
+      //日期范围
+    laydate.render({
+      elem: '#date',
+      range: '~'
+    });
+
+    //监听搜索提交
+    form.on('submit(submit)', function (data) {
+      const formData = data.field;
+      const time = getTime(formData.time)
+      formData.startTime = time.startTime
+      formData.endTime = time.endTime
+      delete formData.time;
+      console.log(formData)
+      table.reload('table', {
+        page: { curr: 1 },
+        where: formData
+      })
+      return false;
+    });
+
+    //监听工具条
+    table.on('tool(demo)', function (obj) {
+      var data = obj.data;
+      if (obj.event === 'del') {
+        layer.confirm('真的要删除么？', function (index) {
+          del(obj, index)
+        });
+      } else if (obj.event === 'edit') {
+        window.location.href = `/admin/news/edit/${data.id}.html`
+      }
+    });
+
+    function del(obj, index) {
+      request("{:url('/web/admin/del')}", { user_id: obj.data.user_id }, function (res) {
+        layer.msg(res.msg, { icon: 1 });
+        obj.del();
+        layer.close(index);
+      })
+    }
+  });
+</script>
+{/block}

@@ -11,3 +11,10 @@ function toast(msg="操作成功！",time=1000){
     document.body.removeChild(DOMS)
   },time)
 }
+
+// 时间范围切割
+function getTime(time){
+  if (!time) return { startTime: '', endTime: '' }
+  const arr = time.split('~')
+  return {startTime:arr[0],endTime:arr[1]}
+}

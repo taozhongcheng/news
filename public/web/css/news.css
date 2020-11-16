@@ -51,11 +51,11 @@
   box-sizing: border-box;
 }
 .news__main-l-detail-content p {
-  color: #666;
+  color: #333;
   line-height: 1.7;
   margin-bottom: 10px;
   text-indent: 2em;
-  font-size: 14px;
+  font-size: 16px;
 }
 .news__main-l-detail-content img,
 .news__main-l-detail-content video {

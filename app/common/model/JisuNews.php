@@ -1,6 +1,6 @@
 <?php
 
-namespace app\web\model;
+namespace app\common\model;
 
 use think\Model;
 
@@ -65,6 +65,7 @@ class JisuNews extends Model
     return  $list;
   }
 
+  // 设置右侧热点新闻
   public function setHotList()
   {
     $hotConfig = config('header')['hot'];
@@ -104,12 +105,23 @@ class JisuNews extends Model
     return $row;
   }
 
-  // 文章数据更新
+  // 文章数据更新，点赞，踩
   public function updateNews($id, $word)
   {
     $row = model('JisuNews')
       ->where('id', $id)
       ->inc($word)
       ->update();
+  }
+
+  // 文章列表
+  public function list($params){
+    $row = model('JisuNews')->getNewsByPage($params['page'], $params['channel'],$params['pageSize']);
+    $data = [
+      'code' => 0,
+      'count' => $row['total'],
+      'data' => $row['list']
+    ];
+    return $data;
   }
 }
