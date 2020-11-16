@@ -57,3 +57,4 @@ Route::rule('/web/admin/list','common/admin/list','get'); // 会员列表
 Route::rule('/web/admin/del','common/admin/del','get'); // 删除会员
 
 Route::rule('/web/news/list', 'common/news/list', 'get'); // 资讯列表
+Route::rule('/web/news/del', 'common/news/del', 'get'); // 删除新闻资讯

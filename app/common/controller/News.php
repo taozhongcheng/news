@@ -17,4 +17,12 @@ class News extends Controller{
     $row =model('JisuNews')->list($data);
     return $row;
   }
+
+  public function del(){
+    $id = input('get.id');
+    $row =model('JisuNews')->get($id)->delete();
+    if($row){
+      $this->success('删除成功！');
+    }
+  }
 }

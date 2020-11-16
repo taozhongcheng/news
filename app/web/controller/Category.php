@@ -29,9 +29,17 @@ class Category extends Base
   // 新闻列表数据
   public function newsList()
   {
-    $page = input('get.page',1);
-    $channel = input('get.channel');
-    $data = model('JisuNews')->getNewsByPage($page, $channel, 10);
+   
+    $params = [
+      'page' => input('get.page',1),
+      'channel' => input('get.channel'),
+      'pageSize' => input('get.pageSize',10),
+      'title' => input('get.title'),
+      'src' => input('get.src'),
+      'startTime' => input('get.startTime'),
+      'endTime' => input('get.endTime')
+    ];
+    $data = model('JisuNews')->getNewsByPage($params);
     if($data){
       return $this->success('请求成功','',$data);
     }  

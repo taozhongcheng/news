@@ -10,13 +10,23 @@ class JisuNews extends Model
   protected $updateTime = false;
   protected $createTime = false;
 
-  public function getNewsByPage($page = 1, $channel, $pagesize = 10)
+  public function getNewsByPage($params)
   {
     $rows = model('JisuNews');
-    if ($channel) {
-      $rows = $rows->where('channel', $channel);
+    $where =[];
+    if ($params['channel']) {
+      $where['channel'] =  $params['channel'];
     }
-    $rows = $rows->order('time', 'desc')->paginate($pagesize, false, ['page' => $page]);
+    if ($params['src']) {
+      $where['src'] =  $params['src'];
+    }
+    if($params['startTime']){
+      $where['create_time'] = ['between',[$params['startTime'],$params['endTime']]];
+    }
+    if($params['title']){
+      $where['title'] = ['like','%'.$params['title'].'%'];
+    }
+    $rows = $rows->where($where)->order('time', 'desc')->paginate($params['pageSize'] , false, ['page' => $params['page']]);
     $list = $rows->items();
 
     foreach ($list as $k => $v) {
@@ -26,6 +36,7 @@ class JisuNews extends Model
       array_unshift($cover, $v['pic']);
       $list[$k]['cover_size'] = sizeof($cover);
       $list[$k]['cover'] = $cover;
+      $list[$k]['category'] = getChannel($v['channel']);
       $list[$k] = array_remove($list[$k], 'content');
       $list[$k] = array_remove($list[$k], 'weburl');
       $list[$k] = array_remove($list[$k], 'url');
@@ -116,7 +127,7 @@ class JisuNews extends Model
 
   // 文章列表
   public function list($params){
-    $row = model('JisuNews')->getNewsByPage($params['page'], $params['channel'],$params['pageSize']);
+    $row = model('JisuNews')->getNewsByPage($params);
     $data = [
       'code' => 0,
       'count' => $row['total'],

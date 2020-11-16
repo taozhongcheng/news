@@ -118,3 +118,24 @@ function sendEmail($title,$desc_content, $toemail)
 		return 1;
 	}
 }
+
+// 新闻文字类别 换 英文channel
+
+function getChannel($name){
+	$arr = [
+		'头条' => 'hot',
+		'财经' => 'finance',
+		'科技' => 'tech',
+		'军事' => 'military',
+		'娱乐' => 'ent',
+		'体育' => 'sports',
+		'教育' => 'edu',
+		'NBA' => 'nba',
+		'股票' => 'stock',
+		'女性' => 'women',
+		'健康' => 'health',
+		'星座' => 'star',
+		'育儿' => 'baby',
+	];
+	return $arr[$name];
+}
