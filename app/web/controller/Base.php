@@ -12,9 +12,9 @@ class Base extends Controller
 
     $isMobile = $this->request->isMobile();
     // 头部菜单配置
-    $header = config('header');
+    $header = model('Cate')->list();
     if (!$isMobile) {
-      $header = array_remove($header, 'push');
+      array_splice($header, 0, 1);
     }
     // 右侧头条看点
     $hotList = model('JisuNews')->setHotList();

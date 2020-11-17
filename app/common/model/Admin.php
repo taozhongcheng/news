@@ -44,7 +44,7 @@ class Admin extends Model
     $userInfo->password = $data['password'];
     $userInfo->email  = $data['email'];
     $userInfo->freeze = $data['freeze'];
-    $row = $userInfo->save();
+    $row = $userInfo->allowField(true)->save();
     if ($row) {
       return 1;
     }

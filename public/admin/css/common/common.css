@@ -59,3 +59,23 @@
 .search__html {
   padding: 20px 0;
 }
+.upload__html {
+  margin-bottom: 10px;
+}
+.upload__html-list {
+  display: inline-block;
+  font-size: 0;
+  vertical-align: middle;
+}
+.upload__html-list img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 0 0px 10px 10px;
+}
+.upload__html .icon-shangchuantupian {
+  display: inline-block;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  font-size: 100px;
+}

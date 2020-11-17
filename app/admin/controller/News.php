@@ -10,13 +10,20 @@ class News extends Base
 
   public function list()
   {
+    $cateList = model('Cate')->list();
+    $viewData = [
+      'cateList' => $cateList
+    ];
+    $this->assign($viewData);
     return  $this->fetch('/news/list');
   }
 
   public function add()
   {
+    $cateList = model('Cate')->list();
     $viewData = [
       'detail' => null,
+      'cateList' => $cateList
     ];
     $this->assign($viewData);
     return $this->fetch('/news/add');
@@ -26,8 +33,10 @@ class News extends Base
   {
     $id = $this->request->param('id');
     $row = model('JisuNews')->getRowById($id);
+    $cateList = model('Cate')->list();
     $viewData = [
       'detail' => $row,
+      'cateList' => $cateList
     ];
     $this->assign($viewData);
     return $this->fetch('/news/add');

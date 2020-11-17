@@ -18,6 +18,25 @@ class News extends Controller{
     return $row;
   }
 
+  public function edit()
+  {
+    $data = [
+      'id' => input('post.id'),
+      'title' => input('post.title'),
+      'channel' => input('post.channel'),
+      'des' => input('post.des'),
+      'keyword' => input('post.keyword'),
+      'content' => input('post.content'),
+      'is_edit' => input('post.is_edit'),
+    ];
+    $res = model('JisuNews')->edit($data);
+    if ($res === 1) {
+      return $this->success('编辑成功！');
+    }else{
+      return $this->error($res);
+    }
+  }
+
   public function del(){
     $id = input('get.id');
     $row =model('JisuNews')->get($id)->delete();

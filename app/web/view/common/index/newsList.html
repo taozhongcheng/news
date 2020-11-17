@@ -15,7 +15,7 @@
 
   <div class="home__main-new-{$news.style} clearfix">
     {volist name="news['list']" id="item"}
-    <a href="/news/{$news['key']}/{$item['id']}.html"  class="home__main-new-item clearfix">
+    <a href="/news/{$item['key']}/{$item['id']}.html"  class="home__main-new-item clearfix">
       <div class="home__main-new-item-pc">
         <img src="{$item.pic}" alt="" class="fm">
         {if condition="$news['style'] === 'select'"}

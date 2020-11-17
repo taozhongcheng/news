@@ -14,7 +14,7 @@
       <div class="news__main-l-header">
         <span>当前位置：</span>
         <a href="/">首页</a>
-        < <a href="/{$header['key']}.html">{$header['name']}</a>
+        < <a href="/news/{$pathIndex}.html">{$pathName}</a>
           < <span>正文</span>
       </div>
       <div class="news__main-l-detail">
@@ -58,7 +58,7 @@
         </div>
         <div class="news__main-l-related-list clearfix">
           {volist name="newsList" id="item" length="3"}
-          <a href="/news/{$header['key']}/{$item['id']}.html" class="news__main-l-related-list-item clearfix">
+          <a href="/news/{$item['key']}/{$item['id']}.html" class="news__main-l-related-list-item clearfix">
             <div class="news__main-l-related-list-item-text">
               <div class="title">{$item.title}</div>
             </div>

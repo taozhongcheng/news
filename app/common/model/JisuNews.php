@@ -51,7 +51,8 @@ class JisuNews extends Model
 
     return $data;
   }
-  public function getNewsLimit($limit = 1, $channel = "头条")
+
+  public function getNewsLimit($limit = 1, $channel = "头条",$key)
   {
     $rows = model('JisuNews')
       ->where("channel", $channel)
@@ -59,19 +60,21 @@ class JisuNews extends Model
       ->limit($limit)
       ->select();
     foreach ($rows as $k => $v) {
-      $rows[$k]['des'] =getDescriptionFromContent($rows[$k]['content'], 150);
+      $rows[$k]['des'] = $rows[$k]['des'] ? $rows[$k]['des'] : getDescriptionFromContent($rows[$k]['content'], 150);
       $rows[$k]['time'] = date('y-m-d', strtotime($v['time']));
+      $rows[$k]['key'] = $key;
     }
     return $rows;
   }
 
   public function setNewsList()
   {
-    $list = array_remove(config('header'), 'push');
+    $list = model('Cate')->list();
+    array_splice($list,0,1);
     foreach ($list as $k => $v) {
       $name = $v['name'];
       $length = $v['length'];
-      $list[$k]['list'] = $this->getNewsLimit($length, $name);
+      $list[$k]['list'] = $this->getNewsLimit($length, $name,$v['key']);
     }
     return  $list;
   }
@@ -79,9 +82,7 @@ class JisuNews extends Model
   // 设置右侧热点新闻
   public function setHotList()
   {
-    $hotConfig = config('header')['hot'];
-    $name = $hotConfig['name'];
-    $list = $this->getNewsLimit(10, $name);
+    $list = $this->getNewsLimit(10, '头条','hot');
     return  $list;
   }
 
@@ -94,13 +95,13 @@ class JisuNews extends Model
     if ($divNum % 2) {
       $row['content'] = '<div>' . $row['content'];
     }
-    $row['des'] = getDescriptionFromContent($row['content'],150);
+    $row['des'] = $row['des']? $row['des'] : getDescriptionFromContent($row['content'],150);
     $row['time'] = date('y-m-d', strtotime($row['time']));
     return $row;
   }
 
   //相关新闻查询
-  public function getRelatedNews($channel = "头条", $id)
+  public function getRelatedNews($channel = "头条", $id,$key)
   {
     $row = model('JisuNews');
     if ($channel !== "推荐") {
@@ -112,6 +113,7 @@ class JisuNews extends Model
       ->select();
     foreach ($row as $k => $v) {
       $row[$k]['des'] =getDescriptionFromContent($v['content'], 150);
+      $row[$k]['key'] =  $key;
     }
     return $row;
   }
@@ -135,4 +137,22 @@ class JisuNews extends Model
     ];
     return $data;
   }
+
+  // 编辑资讯
+  public function edit($data){
+    $validate = new \app\common\validate\JisuNews();
+    if (!$validate->scene('edit')->check($data)) {
+      return $validate->getError();
+    };
+    $detail = model('JisuNews')->get($data['id']);
+    $detail->title = $data['title'];
+    $detail->channel =$data['channel'];
+    $detail->des = $data['des'];
+    $detail->content = $data['content'];
+    $detail->keyword = $data['keyword'];
+    $detail->is_edit = $data['is_edit'];
+    $row = $detail->allowField(true)->save();
+    if($row) return 1;
+  }
 }
+// 炼金术士 ,时光守护者,玛尔扎哈,猩红收割者,暗夜猎手,众星之子,赏金猎人

@@ -11,26 +11,27 @@ class News extends Base
   {
     $type = $this->request->param('type');
     $id = $this->request->param('id');
-    $header = config('header')[$type];
+  //  $header = config('header')[$type];
     $detail =  model('JisuNews')->getRowById($id);
     // 浏览量+1
     model('JisuNews')->updateNews($id, 'browse');
     // SEO 默认设置
     $seoCofig = config('seo')[$type];
+    $keyword = $detail['keyword'] ? $detail['keyword'] : $seoCofig['keyword'];
     $seo = array(
       'title' => $detail['title'],
-      'keyword' => $seoCofig['keyword'],
+      'keyword' => $keyword,
       'desc' => $detail['des'],
     );
     // 设置相关文章
-    $newsList =  model('JisuNews')->getRelatedNews($header['name'], $id);
+    $newsList =  model('JisuNews')->getRelatedNews(getChannelCh($type), $id, $type);
     // 文章评论列表
     $viewData = [
       'pathIndex' => $type,
-      'header' => $header,
+      'pathName' => getChannelCh($type),
       'detail' => $detail,
       'id' => $id,
-      'se0' => $seo,
+      'seo' => $seo,
       'newsList' => $newsList,
     ];
 

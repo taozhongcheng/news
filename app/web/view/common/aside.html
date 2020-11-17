@@ -23,7 +23,7 @@
         {else /}
           <span class="bage">{$i}</span>
         {/if}
-        <a href="/news/hot/{$item['id']}.html">{$item['title']}</a>
+        <a href="/news/{$item.key}/{$item['id']}.html">{$item['title']}</a>
       </div>
       {/volist}
     </div>

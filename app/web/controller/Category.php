@@ -12,8 +12,7 @@ class Category extends Base
     $path = $this->request->param('type');
     $this->assign('path', $path);
     if ($path) {
-      $header = config('header');
-      $channel = $header[$path]['name'];
+      $channel = getChannelCh($path);
       // SEO设置
       $seo = config("seo");
       $this->assign(['seo' => $seo[$path], 'pathIndex' => $path]);
@@ -34,10 +33,10 @@ class Category extends Base
       'page' => input('get.page',1),
       'channel' => input('get.channel'),
       'pageSize' => input('get.pageSize',10),
-      'title' => input('get.title'),
-      'src' => input('get.src'),
-      'startTime' => input('get.startTime'),
-      'endTime' => input('get.endTime')
+      'title' => input('get.title',''),
+      'src' => input('get.src',''),
+      'startTime' => input('get.startTime',''),
+      'endTime' => input('get.endTime','')
     ];
     $data = model('JisuNews')->getNewsByPage($params);
     if($data){

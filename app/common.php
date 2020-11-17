@@ -139,3 +139,24 @@ function getChannel($name){
 	];
 	return $arr[$name];
 }
+
+function getChannelCh($name)
+{
+	$arr = [
+		'push'=> '推荐', // 没有的
+		'hot' => '头条',
+		'finance' => '财经',
+		'tech' => '科技',
+		'military' => '军事',
+		'ent' =>'娱乐',
+		'sports' => '体育',
+		'edu' => '教育',
+		'nba' =>'NBA',
+		'stock' =>'股票',
+		'women' =>'女性',
+		'health' =>'健康',
+		'star' =>'星座',
+		'baby' =>'育儿',
+	];
+	return $arr[$name];
+}
