@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1605097000;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1605446912;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1605444156;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\login.html";i:1605282460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1604765869;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1604928460;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:8:{s:67:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\index.html";i:1604929580;s:73:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\file.html";i:1605097000;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\header.html";i:1605446912;s:77:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\register.html";i:1605444156;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\login.html";i:1605282460;s:83:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\index\newsList.html";i:1605616725;s:74:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\aside.html";i:1605616725;s:75:"D:\phpstudy_pro\WWW\thinkphp_news\public/../app/web\view\common\footer.html";i:1604659666;}*/ ?>
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
@@ -290,7 +290,7 @@
 
   <div class="home__main-new-<?php echo $news['style']; ?> clearfix">
     <?php if(is_array($news['list']) || $news['list'] instanceof \think\Collection || $news['list'] instanceof \think\Paginator): $i = 0; $__LIST__ = $news['list'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
-    <a href="/news/<?php echo $news['key']; ?>/<?php echo $item['id']; ?>.html"  class="home__main-new-item clearfix">
+    <a href="/news/<?php echo $item['key']; ?>/<?php echo $item['id']; ?>.html"  class="home__main-new-item clearfix">
       <div class="home__main-new-item-pc">
         <img src="<?php echo $item['pic']; ?>" alt="" class="fm">
         <?php if($news['style'] === 'select'): ?>
@@ -348,7 +348,7 @@
         <?php else: ?>
           <span class="bage"><?php echo $i; ?></span>
         <?php endif; ?>
-        <a href="/news/hot/<?php echo $item['id']; ?>.html"><?php echo $item['title']; ?></a>
+        <a href="/news/<?php echo $item['key']; ?>/<?php echo $item['id']; ?>.html"><?php echo $item['title']; ?></a>
       </div>
       <?php endforeach; endif; else: echo "" ;endif; ?>
     </div>

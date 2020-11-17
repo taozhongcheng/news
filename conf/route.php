@@ -59,3 +59,4 @@ Route::rule('/web/admin/del','common/admin/del','get'); // 删除会员
 Route::rule('/web/news/list', 'common/news/list', 'get'); // 资讯列表
 Route::rule('/web/news/del', 'common/news/del', 'get'); // 删除新闻资讯
 Route::rule('/web/news/edit', 'common/news/edit', 'post'); // 修改新闻资讯
+Route::rule('/web/upload/image', 'common/upload/image', 'post'); // 上传图片

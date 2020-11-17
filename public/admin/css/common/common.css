@@ -64,14 +64,34 @@
 }
 .upload__html-list {
   display: inline-block;
-  font-size: 0;
   vertical-align: middle;
 }
-.upload__html-list img {
+.upload__html-list > div {
+  display: inline-block;
+  font-size: 0;
+  position: relative;
+  margin: 0 0px 10px 10px;
+}
+.upload__html-list > div span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.upload__html-list > div span i {
+  position: absolute;
+  left: 41%;
+  top: 41%;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+}
+.upload__html-list > div img {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  margin: 0 0px 10px 10px;
 }
 .upload__html .icon-shangchuantupian {
   display: inline-block;
