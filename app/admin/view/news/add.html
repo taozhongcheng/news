@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	 
-			{include file="/common/upload" multiple='true' id="cover"/}
+			{include file="/common/upload" multiple='true' id="cover" path="news" /}
 		<!-- </div> -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">关键字</label>
@@ -66,17 +66,16 @@
 	layui.use(['form', 'layedit', 'upload'], function(){
 	  var form = layui.form,
 	  	 layer = layui.layer,
-		layedit = layui.layedit,
-		upload = layui.upload;
-	  
+			layedit = layui.layedit,
+			upload = layui.upload;
 	  //创建一个编辑器
 		var editIndex = layedit.build('LAY_demo_editor');
 		//构建一个默认的编辑器
 		const option = {
 			height:500,
 			uploadImage: {
-				url: ''    //上传接口url
-				, type: 'post' //默认post
+				url: '' ,   //上传接口url
+				type: 'post' //默认post
 			}
 		}
 		const textareaBox = layedit.build('LAY_demo1', option);
@@ -100,6 +99,7 @@
 	  form.on('submit(submit)', function(data){
 			const params = data.field;
 			params.is_edit = 1;
+			params.covers = uploadList(); 
 			params.content = layedit.getContent(textareaBox);
 			params.id ? edit(params) :add(params)
 			return false;
@@ -124,7 +124,7 @@
 	  // 会员详情表单赋值
 	 (function setVal(data){
 		 if(!data) return
-		
+		initUpload(data.covers);
 		form.val('example', {
 		  "id":data.id,
 		  "title": data.title, 

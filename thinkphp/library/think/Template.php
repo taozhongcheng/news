@@ -478,7 +478,16 @@ class Template
             if (preg_match_all($regex, $template, $matches, PREG_SET_ORDER)) {
                 foreach ($matches as $match) {
                     $array = $this->parseAttr($match[0]);
-                    $file  = $array['file'];
+                    // if ($array['append']) {
+                    //     if (0 === strpos($array['append'], '$')) {
+                    //         $array['append'] = $this->get(substr($array['append'], 1));
+                    //     }
+                    //     $file = $array['append'] . $array['file'];
+                    //     unset($array['append']);
+                    // } else {
+                    //     $file  = $array['file'];
+                    // }
+                   $file  = $array['file'];
                     unset($array['file']);
                     // 分析模板文件名并读取内容
                     $parseStr = $this->parseTemplateName($file);

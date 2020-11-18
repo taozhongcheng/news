@@ -63,9 +63,10 @@
    function setHtml(list) {
       let html = '';
       list.forEach(item => {
-        const type = item.cover_size;
-        const className = type >3 ? `more_cover` : '';
-        html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ className+"'>"
+        const length = item.covers.length;
+        const className = length >3 ? `more_cover` : '';
+        const noImg = length ? '' :'no__img';
+        html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ noImg +' '+className+"'>"
         html += "<div class='clearfix item_li'>"
         html += "<div class='category__main-new-list-item-text'>"
         html += "<div class='title'>" + item['title'] + "</div>"
@@ -74,10 +75,10 @@
         }
         html += "</div>"
         html += "<div class='category__main-new-list-item-pc'>"
-        html += "<img src=" + item['cover'][0] + " alt='"+item['title'] +"'>"
+        html += "<img src=" + item['covers'][0] + " alt='"+item['title'] +"'>"
         if(className){
-          html += "<img src=" + item['cover'][2] + " alt='"+item['title'] +"'>"
-          html += "<img src=" + item['cover'][3] + " alt='"+item['title'] +"'>"
+          html += "<img src=" + item['covers'][2] + " alt='"+item['title'] +"'>"
+          html += "<img src=" + item['covers'][3] + " alt='"+item['title'] +"'>"
         }
         html += "</div>"
         html += "<div class='category__main-new-list-item-btns'>"

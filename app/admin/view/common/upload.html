@@ -3,51 +3,75 @@
 
     <div class="layui-upload">
       <i class="iconfont icon-shangchuantupian" id="[id]"></i>
-      <div class="upload__html-list"></div>
+      <div class="upload__html-list upload__html-[id]"></div>
     </div>
 </div>
 
 <script>
+  //本组件必填参数
+  /*
+    *  multiple 是否多张上传
+    *  id 容器id
+    *  path 存放目录
+  */
   	layui.use(['upload'], function () {
       var  layer = layui.layer,upload = layui.upload;
-      // 是否上传多张
-      const multiple = [multiple]//[multiple] ? true :false;
-       //多图片上传
+      const multiple = [multiple]
       upload.render({
         elem: '#[id]',
         field:'image',
-        url: "{:url('/web/upload/image')}", //改成您自己的上传接口
-       // multiple,
+        accept:'images',
+        size:3000,
+        data:{path:'[path]'},
+        url: "{:url('/web/upload/image')}",
         before: function (obj) {
-          //预读本地文件示例，不支持ie8
-          obj.preview(function (index, file, result) {
-            const html = "<div class='cover-"+index+"'><span><i onclick=del("+index+") class='iconfont icon-dustbin_icon'></i></span><img src='"+result+"' data-id="+index+"></div>"
-            $('.upload__html-list').append(html)
-             isHideAdd()
-          });
-        //  layer.load()
+          layer.load();
         },
         done: function (res) {
-      //    layer.closeAll('loading'); //关闭loading
-          if(res.code ===0 ) console.log(res)
-          //上传完毕
+          layer.closeAll('loading');
+          if(res.code ===1 ) {
+            setUploadHtml(res.data)
+            isHideAdd()
+          }
         },
-        error: function () {
-           layer.msg("上传失败",{icon:5,time:1000})
+        error: function (res) {
+           layer.closeAll('loading');
+           layer.msg(res.msg,{icon:5,time:1000})
         }
       });
 
       // 删除上传的图标
-     window.del = function (index){
-       const dom = `.cover-${index}-0`
-       $(dom).remove();
+     window.delCover = function (index){
+       $(`.cover-${index}`).remove();
+       isHideAdd()
+      }
+      //获取上传图片list 
+      window.uploadList = function(){
+        const imglist = $('.upload__html-[id]').find('img');
+        const list = []
+        for(var i=0;i<imglist.length;i++){
+          list.push($(imglist[i]).attr('src'))
+        }
+        return list.join(',')
       }
       // 设置是否能再上传
       function isHideAdd(){
-         const dom = $('.upload__html-list').find('img')
+         const dom = $('.upload__html-[id]').find('img')
          const length = dom.length
          length && !multiple ? $('#[id]').hide() : $('#[id]').show()
       }
-
+      // 设置html
+      function setUploadHtml(data,indexs=0){
+         const index = new Date().getTime() +indexs;
+         const html = "<div class='cover-" + index + "'><span><i onclick=delCover(" + index + ") class='iconfont icon-dustbin_icon'></i></span><img src='" + data + "' data-id=" + index + "></div>"
+         $('.upload__html-[id]').append(html)
+      }
+      // 初始化参数方法
+      window.initUpload =function (data) {
+        if (!data) return
+        data.forEach((item,index) => {
+           setUploadHtml(item,index)
+        })
+      }
     })
 </script>

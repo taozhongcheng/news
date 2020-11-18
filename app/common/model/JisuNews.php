@@ -32,10 +32,15 @@ class JisuNews extends Model
     foreach ($list as $k => $v) {
       $list[$k]['des'] = getDescriptionFromContent($rows[$k]['content'], 150);
       $list[$k]['time'] = date("Y-m-d", strtotime($v['time']));
-      $cover = get_images_from_html($v['content']);
-      array_unshift($cover, $v['pic']);
-      $list[$k]['cover_size'] = sizeof($cover);
-      $list[$k]['cover'] = $cover;
+
+      $imgurl = 'https://n.sinaimg.cn/default/2fb77759/20151125/320X320.png';
+      if($list[$k]['covers']){
+        $list[$k]['covers'] = explode(',', $list[$k]['covers']);
+      }else{
+        $covers = get_images_from_html($v['content']);
+        $list[$k]['pic'] === $imgurl ? '': array_unshift($covers, $v['pic']);
+        $list[$k]['covers'] = $covers;
+      }
       $list[$k]['category'] = getChannel($v['channel']);
       $list[$k] = array_remove($list[$k], 'content');
       $list[$k] = array_remove($list[$k], 'weburl');
@@ -97,6 +102,16 @@ class JisuNews extends Model
     }
     $row['des'] = $row['des']? $row['des'] : getDescriptionFromContent($row['content'],150);
     $row['time'] = date('y-m-d', strtotime($row['time']));
+    
+    // 封面设置
+    $imgurl = 'https://n.sinaimg.cn/default/2fb77759/20151125/320X320.png';
+    if($row['covers']){
+      $row['covers'] = explode(',', $row['covers']);
+    }else{
+      $covers = get_images_from_html($row['content']);
+      $row['pic'] === $imgurl ? '' : array_unshift($covers, $row['pic']);
+      $row['covers'] = $covers;
+    }
     return $row;
   }
 
@@ -151,6 +166,7 @@ class JisuNews extends Model
     $detail->content = $data['content'];
     $detail->keyword = $data['keyword'];
     $detail->is_edit = $data['is_edit'];
+    $detail->covers = $data['covers'];
     $row = $detail->allowField(true)->save();
     if($row) return 1;
   }

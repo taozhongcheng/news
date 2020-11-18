@@ -105,6 +105,22 @@
   -webkit-transform: scale(0.333);
   width: 300%;
 }
+.category__main-l .category__main-new-list .no__img {
+  padding-bottom: 30px;
+}
+.category__main-l .category__main-new-list .no__img .category__main-new-list-item-pc {
+  display: none;
+  width: 0;
+  height: 0;
+  margin-right: 0;
+}
+.category__main-l .category__main-new-list .no__img .category__main-new-list-item-text {
+  width: 100%;
+}
+.category__main-l .category__main-new-list .no__img .category__main-new-list-item-btns {
+  left: 0;
+  bottom: 5px;
+}
 .category__main-l .category__main-new-list .more_cover {
   padding-bottom: 30px;
 }

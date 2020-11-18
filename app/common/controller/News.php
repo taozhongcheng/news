@@ -28,6 +28,7 @@ class News extends Controller{
       'keyword' => input('post.keyword'),
       'content' => input('post.content'),
       'is_edit' => input('post.is_edit'),
+      'covers' => input('post.covers'),
     ];
     $res = model('JisuNews')->edit($data);
     if ($res === 1) {
