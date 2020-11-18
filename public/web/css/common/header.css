@@ -58,6 +58,7 @@
   position: absolute;
   right: 20px;
   top: 0;
+  width: 100px;
   color: #00A5EB;
 }
 .web__header-right .item {

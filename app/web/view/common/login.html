@@ -25,11 +25,13 @@
           <div class="form-item">
             <i class="iconfont icon-mima"></i>
             <span class="form-item-label">用户密码</span>
-            <div class="form-item-input"><input type="text" length="15" name="password" placeholder="请输入用户密码">
+            <div class="form-item-input"><input type="password" length="15" name="password" placeholder="请输入用户密码">
             </div>
           </div>
-        <div class="form-item">
+        <div class="form-item bot">
           <button class="form-item-submit" onclick="login();return false">立即登录</button>
+          <span class="registen" onclick="toRegister()">注册</span>
+          <span class="password">忘记密码</span>
         </div>
       </form>
     </div>
@@ -41,6 +43,10 @@
   }
   function closeLoginMotal() {
     $('.login__html').hide();
+  }
+  function toRegister(){
+    closeLoginMotal()
+    openRegisterMotal()
   }
   function login() {
     const formData = $('#login__form').serializeArray()

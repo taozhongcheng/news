@@ -73,7 +73,9 @@
           transform: scale(0.333);
           -webkit-transform: scale(0.333);
         }
-
+        &:last-child::after{
+          height: 0px;
+        }
         .iconfont {
           font-size: 22px;
           vertical-align: middle;
@@ -123,6 +125,20 @@
           width: 100%;
           display: block;
           border: none;
+        }
+        &.bot {
+          font-size: 14px;
+          color: #999;
+
+          .registen {
+            cursor: pointer;
+            padding-right: 20px;
+          }
+
+          .password {
+            cursor: pointer;
+            float: right;
+          }
         }
       }
     }

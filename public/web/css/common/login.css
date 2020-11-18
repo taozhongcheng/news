@@ -68,6 +68,9 @@
   transform: scale(0.333);
   -webkit-transform: scale(0.333);
 }
+.login__html-warp-mid .form-item:last-child::after {
+  height: 0px;
+}
 .login__html-warp-mid .form-item .iconfont {
   font-size: 22px;
   vertical-align: middle;
@@ -111,6 +114,18 @@
   width: 100%;
   display: block;
   border: none;
+}
+.login__html-warp-mid .form-item.bot {
+  font-size: 14px;
+  color: #999;
+}
+.login__html-warp-mid .form-item.bot .registen {
+  cursor: pointer;
+  padding-right: 20px;
+}
+.login__html-warp-mid .form-item.bot .password {
+  cursor: pointer;
+  float: right;
 }
 @media screen and (max-width: 450px) {
   .login__html-warp {
