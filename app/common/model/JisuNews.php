@@ -57,17 +57,17 @@ class JisuNews extends Model
     return $data;
   }
 
-  public function getNewsLimit($limit = 1, $channel = "头条",$key)
+  public function getNewsLimit($limit = 1, $channel)
   {
-    $rows = model('JisuNews')
-      ->where("channel", $channel)
-      ->order('time', 'desc')
-      ->limit($limit)
-      ->select();
+    $rows = model('JisuNews');
+    if($channel){
+      $rows = $rows->where("channel", $channel);
+    }
+   $rows= $rows->order('time', 'desc')->limit($limit)->select();
     foreach ($rows as $k => $v) {
       $rows[$k]['des'] = $rows[$k]['des'] ? $rows[$k]['des'] : getDescriptionFromContent($rows[$k]['content'], 150);
       $rows[$k]['time'] = date('y-m-d', strtotime($v['time']));
-      $rows[$k]['key'] = $key;
+      $rows[$k]['key'] = getChannel($v['channel']);
     }
     return $rows;
   }
@@ -79,7 +79,7 @@ class JisuNews extends Model
     foreach ($list as $k => $v) {
       $name = $v['name'];
       $length = $v['length'];
-      $list[$k]['list'] = $this->getNewsLimit($length, $name,$v['key']);
+      $list[$k]['list'] = $this->getNewsLimit($length, $name);
     }
     return  $list;
   }
@@ -87,7 +87,7 @@ class JisuNews extends Model
   // 设置右侧热点新闻
   public function setHotList()
   {
-    $list = $this->getNewsLimit(10, '头条','hot');
+    $list = $this->getNewsLimit(10,'');
     return  $list;
   }
 
@@ -103,7 +103,7 @@ class JisuNews extends Model
     $row['des'] = $row['des']? $row['des'] : getDescriptionFromContent($row['content'],150);
     $row['time'] = date('y-m-d', strtotime($row['time']));
     
-    // 封面设置
+    //
     $imgurl = 'https://n.sinaimg.cn/default/2fb77759/20151125/320X320.png';
     if($row['covers']){
       $row['covers'] = explode(',', $row['covers']);

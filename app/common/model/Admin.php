@@ -36,7 +36,7 @@ class Admin extends Model
     if(!$validate->scene('edit')->check($data)){
       return $validate->getError();
     }
-    if ($hasCode && $data['code'] != session('code')) {
+    if (($hasCode && $data['code'] != session('code')) || ($hasCode && !session('code'))) {
       return '验证码有误！';
     }
     $userInfo = model('Admin')->get($data['user_id']);
@@ -69,7 +69,7 @@ class Admin extends Model
   }
 
   public function userInfo($data){
-    $row= model('Admin')->where($data)->find();
+    $row= model('Admin')->where($data)->field(['user_id', 'nickname', 'email', 'image'])->find();
     if($row) return $row;
     return 1;
   }

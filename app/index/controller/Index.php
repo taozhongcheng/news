@@ -18,7 +18,7 @@ class Index
     public function index(){
         // $res = $_ENV;
         // $res = Env::get('coco1','default');
-        $res = Env::get('database.hostname');
-         dump(config());
+       // $res = Env::get('database.hostname');
+       //  dump(config());
      }
 }

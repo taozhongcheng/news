@@ -76,13 +76,21 @@ class News extends Base
   // 文章发表评论
   public function commentSend()
   {
-    $isMobile = $this->request->isMobile();
-    $ip = $this->request->ip();
+    if(session('?userInfo.nickname')){
+      $name = session('userInfo.nickname');
+      $userId = session('userInfo.user_id');
+    }else{
+      $isMobile = $this->request->isMobile();
+      $ip = $this->request->ip();
+      $equipment = $isMobile ? $ip . '手机端用户' : $ip . '电脑端用户';
+      $name = $equipment;
+      $userId = $ip;
+    }
     $data = [
       'topic_id' => input('post.id'),
       'content' => input('post.content'),
-      'user_id' => $ip,
-      'user_name' => $isMobile ? $ip . '手机端用户' : $ip . '电脑端用户',
+      'user_id' => $userId,
+      'user_name' => $name,
     ];
     $res = model('Comment')->add($data);
     // 插入评论数据

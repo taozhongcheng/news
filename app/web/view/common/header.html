@@ -32,23 +32,50 @@
       </div>
     </div>
     <div class="web__header-right">
-      {if condition="!$userInfo"}
       <div class="web__header-right-item1 item" onclick="openLoginMotal()">
         登录
       </div>
-      {else if/}
-      <div class="web__header-right-item2 item">
-         {$userInfo.nickname}
+      <div class="web__header-right-item2 item item2">
+         <span class="nick">{$userInfo.nickname}</span>
+         <div class="user-mune">
+            <a href="{:url('/admin/index')}">
+              个人中心
+            </a>
+            <a onclick="loginOut()">
+              退出
+            </a>
+         </div>
       </div>
-      <a href="{:url('/admin/index')}" class="web__header-right-item2 item">
-         个人后台
-     </a>
-      {/if}
+      
     </div>
     <div class="web__header-motal"></div>
   </div>
 </div>
 <script>
+  setHeadeLogin();
+  function setHeadeLogin() {
+      let userInfo = '{$Think.session.userInfo}';
+          userInfo = userInfo ? JSON.parse(userInfo) : null;
+      if (userInfo && userInfo.nickname) {
+        $('.web__header-right-item1').hide();
+        $('.web__header-right-item2').show()
+      } else {
+        $('.web__header-right-item1').show();
+        $('.web__header-right-item2').hide()
+      }
+    }
+    //
+   function loginOut() {
+      let userInfo = '{$Think.session.userInfo}';
+          userInfo = userInfo ? JSON.parse(userInfo) : null;
+      const user_id = userInfo.user_id;
+      request("{:url('web/admin/loginOut')}", { user_id }, function (res) {
+         toast(res.msg)
+         $('.web__header-right-item1').show();
+         $('.web__header-right-item2').hide();
+         if('{$isMobile}') healdMeunClick();
+      })
+   }
   function healdMeunClick(){
     const isActive = $('.web__header').hasClass('web__app-header')
     isActive ? meunUp() : meunDown()

@@ -54,6 +54,7 @@
       if(!data.data.total){
         $('.empty__html').show();
         $(".list__loading").hide();
+        switchs = true;
         return
       }
       $('#comment-num').html(data.data.total);

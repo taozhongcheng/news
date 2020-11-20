@@ -18,7 +18,6 @@ class Base extends Controller
     }
     // 右侧头条看点
     $hotList = model('JisuNews')->setHotList();
-    $week = '星期' . mb_substr("日一二三四五六", date("w"), 1, "utf-8");
     // 友情链接
     $linkList = model('Link')->getLinkList();
     // SEO 默认设置
@@ -29,7 +28,6 @@ class Base extends Controller
       'pathIndex' => 0,
       'title' => '',
       'hotList' => $hotList,   // 右侧头条看点
-      'week' => $week,     // 星期几
       'linkList' => $linkList,  // 友情链接
       'seo' => config("seo")['default'],
       'userInfo' => session("userInfo"),

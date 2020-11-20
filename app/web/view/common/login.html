@@ -55,7 +55,9 @@
       $('#login__form')[0].reset()
       toast(res.msg)
       closeLoginMotal()
-      // $(".web__header").removeClass('web__app-header');
+      $('.web__header-right-item1').hide();
+      $('.web__header-right-item2').show();
+      if ('{$isMobile}') healdMeunClick();
     }, 'post')
     setTimeout(function () {
       $('.form-item-submit').attr("disabled", false);

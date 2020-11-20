@@ -10,7 +10,7 @@
 // 读取 app_status 值文件配置
 use think\Env;
 return [
-   'version' => time(),
+   'version' => 'v1.0',//time(),
    'app_status' => Env::get('status','pro'),
    // 开启路由
    'url_route_on' => true,
@@ -18,11 +18,6 @@ return [
    'url_route_must' => true,
   //   // 路由使用完整匹配
   //   'route_complete_match'   => false,
-   // 全局字符串替换
- //  'url_html_suffix' => 'html',
-   'view_replace_str' =>[
-     '__COCO__' => '我是替换coco啊'
-   ],
   'session'                => [
     'id'             => '',
     // SESSION_ID的提交变量,解决flash上传跨域
