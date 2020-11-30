@@ -10,16 +10,15 @@
    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
    &-logo {
       float: left;
-
+      padding-left: 15px;
       a {
          display: inline-block;
-         height: 100%;
          font-size: 0;
-         width: 80px;
          position: relative;
-
+          vertical-align:top;
          img {
             height: 60px;
+            object-fit: cover;
          }
       }
    }
@@ -53,7 +52,7 @@
 
          &.active{
              a{
-                color: red;
+                color: #FFA500;
              }
          }
       }
@@ -63,7 +62,6 @@
       position:absolute;
       right: 20px;
       top: 0;
-     // height: 100%;
       color: #00A5EB;
       .item {
          cursor: pointer;
@@ -113,10 +111,8 @@
          text-align: center;
          height: 50px;
          a {
-            width: 70px;
-
             img {
-               
+                height: 50px;
             }
          }
       }
@@ -235,6 +231,7 @@
             text-align: left;
             background: #fff;
             padding-bottom: 11px;
+            padding-left: 0px;
             a{
                width: 20%;
                display: inline-block;
@@ -272,8 +269,9 @@
             &-item {
                width: 20%;
                height: 60px;
+               
                text-align: center;
-               padding-bottom: 15px;
+               padding-bottom: 13px;
                box-sizing: content-box;
 
                &-icon {
@@ -288,20 +286,23 @@
                }
 
                a {
-                  height: 30px;
+                  display: block;
+                  color: #333;
                   line-height: 30px;
-                  color: #333
+                  span{
+                     vertical-align: top;
+                  }
                }
 
                &.active {
                   position: relative;
          
                   i {
-                     color: red;
+                     color: #FFA500;
                   }
 
                   a {
-                     color:red;
+                     color:#FFA500;
                   }
                   &::after{
                      height: 0;
@@ -324,15 +325,19 @@
          }
 
          .web__header-motal {
-            width: 100%;
-            height: calc(100% - 1px);
+            width: 100vw;
+            height: 100vh;
             position: fixed;
             z-index: 100;
             bottom: 0;
             left: 0;
-            top: 1px;
+            top: 0px;
             right: 0;
             background: rgba(0, 0, 0, 0.5);
+            .bar{
+               height: 90px;
+               background: #fff;
+            }
          }
       }
    }
@@ -341,6 +346,14 @@
     .web__header {
         height: 50px;
         line-height: 50px;
+      &-logo{
+         padding-left: 10px;
+         a{
+            img{
+               height: 50px;
+            }
+         }
+      }
        &-more{
           display: block;
        }

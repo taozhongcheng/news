@@ -43,7 +43,8 @@ Route::rule('/news/detail/praise','web/news/detailPraise','get'); // 文章内�
 Route::rule('/news/comment/praise','web/news/commentPraise','get');  // 评论点赞，踩
 
 Route::rule('/news/comment/send','web/news/commentSend','post'); // 发表评论
-Route::rule('/news/comment/list','web/news/commentList','get');// 文章评论列表
+Route::rule('/news/comment/list','web/news/commentList','get'); // 文章评论列表
+Route::rule('/web/sitemap/create', 'sitemap/index/index', 'get');// 网站地图
 
 
 // 公共api

@@ -142,8 +142,8 @@
 }
 .home__main-content-ml .home__main-new-list .home__main-new-item-pc {
   float: left;
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 80px;
   margin-right: 20px;
   position: relative;
   overflow: hidden;

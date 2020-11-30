@@ -10,7 +10,7 @@
 // 读取 app_status 值文件配置
 use think\Env;
 return [
-   'version' => 'v1.0',//time(),
+   'version' => 'v1.0.31',//time(),
    'app_status' => Env::get('status','pro'),
    // 开启路由
    'url_route_on' => true,
@@ -33,10 +33,10 @@ return [
   ],
   // 禁止访问模块
   'deny_module_list' => [],
-  'app_debug' => true,
+  'app_debug' => false,
   //抛出 HTTP 异常
   'http_exception_template' => [
     404 => APP_PATH . '404.html',
     401 => APP_PATH . '401.html',
-  ]
+  ],
 ];

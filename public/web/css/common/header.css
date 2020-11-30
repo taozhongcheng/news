@@ -11,16 +11,17 @@
 }
 .web__header-logo {
   float: left;
+  padding-left: 15px;
 }
 .web__header-logo a {
   display: inline-block;
-  height: 100%;
   font-size: 0;
-  width: 80px;
   position: relative;
+  vertical-align: top;
 }
 .web__header-logo a img {
   height: 60px;
+  object-fit: cover;
 }
 .web__header-more {
   display: none;
@@ -46,7 +47,7 @@
   height: 100%;
 }
 .web__header-list-item.active a {
-  color: red;
+  color: #FFA500;
 }
 .web__header-right {
   position: absolute;
@@ -96,8 +97,8 @@
     text-align: center;
     height: 50px;
   }
-  .web__header-logo a {
-    width: 70px;
+  .web__header-logo a img {
+    height: 50px;
   }
   .web__header-more {
     width: 80px;
@@ -201,6 +202,7 @@
     text-align: left;
     background: #fff;
     padding-bottom: 11px;
+    padding-left: 0px;
   }
   .web__header.web__app-header .web__header-logo a {
     width: 20%;
@@ -239,7 +241,7 @@
     width: 20%;
     height: 60px;
     text-align: center;
-    padding-bottom: 15px;
+    padding-bottom: 13px;
     box-sizing: content-box;
   }
   .web__header.web__app-header .web__header-list-item-icon {
@@ -252,18 +254,21 @@
     color: #333;
   }
   .web__header.web__app-header .web__header-list-item a {
-    height: 30px;
-    line-height: 30px;
+    display: block;
     color: #333;
+    line-height: 30px;
+  }
+  .web__header.web__app-header .web__header-list-item a span {
+    vertical-align: top;
   }
   .web__header.web__app-header .web__header-list-item.active {
     position: relative;
   }
   .web__header.web__app-header .web__header-list-item.active i {
-    color: red;
+    color: #FFA500;
   }
   .web__header.web__app-header .web__header-list-item.active a {
-    color: red;
+    color: #FFA500;
   }
   .web__header.web__app-header .web__header-list-item.active::after {
     height: 0;
@@ -278,21 +283,31 @@
     background: #fff;
   }
   .web__header.web__app-header .web__header-motal {
-    width: 100%;
-    height: calc(100% - 1px);
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     z-index: 100;
     bottom: 0;
     left: 0;
-    top: 1px;
+    top: 0px;
     right: 0;
     background: rgba(0, 0, 0, 0.5);
+  }
+  .web__header.web__app-header .web__header-motal .bar {
+    height: 90px;
+    background: #fff;
   }
 }
 @media screen and (max-width: 750px) {
   .web__header {
     height: 50px;
     line-height: 50px;
+  }
+  .web__header-logo {
+    padding-left: 10px;
+  }
+  .web__header-logo a img {
+    height: 50px;
   }
   .web__header-more {
     display: block;

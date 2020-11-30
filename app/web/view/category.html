@@ -20,7 +20,7 @@
 {include file="/common/footer" /}
 
 <script language="javascript">
-  const channel = "{$channel}" === '推荐' ? '' : "{$channel}";
+  const channel = "{$channel}";
   const path = "{$path}" ? '{$path}' : 'push';
   var pageNum = 1, listData = [], switchs = false, lastPage=1;
   // 是否是详情页返回
@@ -66,7 +66,6 @@
         const length = item.covers.length;
         const className = length >3 ? `more_cover` : '';
         const noImg = length ? '' :'no__img';
-        //const viweImg = '?imageView2/1/w/80/h/80';
         html += "<a href='/news/" + path + "/" + item['id'] + ".html' class='category__main-new-list-item "+ noImg +' '+className+"'>"
         html += "<div class='clearfix item_li'>"
         html += "<div class='category__main-new-list-item-text'>"
@@ -86,8 +85,6 @@
         html += "<span class='author'><i class='iconfont icon-author'></i>" + item['src'] + "</span>"
         if (channel) {
           html += "<span class='time'><i class='iconfont icon-time'></i>" + item['time'] + "</span>"
-        } else {
-          html += "<span class='channel'>" + item['channel'] + "</span>"
         }
         html += "</div></div></a>"
       });

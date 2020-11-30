@@ -11,6 +11,19 @@
    </div>
 </div>
 <script>
+  //获取焦点
+  $('.evaluation-textbox').on('focus',function(){
+    if('{$isMobile}') $('.evaluation__html').addClass('isfocus')
+  })
+  //失去焦点
+  $('body').on('click', function () {
+    if ('{$isMobile}')
+    $('.evaluation__html').removeClass('isfocus')
+  })
+  
+  $('.evaluation__html').on('click',function(event){
+    event.stopPropagation()
+  })
   function healdSend() {
     const params = {
       id: "{$id}",
@@ -24,6 +37,8 @@
       $('#comment-num').html(total+1);
       $('.evaluation-textbox').val('');
       if(!total) $('.empty__html').hide();
+      if ('{$isMobile}')
+      $('.evaluation__html').removeClass('isfocus')
     },'post')
   }
 </script>

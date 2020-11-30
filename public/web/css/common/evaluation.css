@@ -1,3 +1,14 @@
+.evaluation__html {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 999;
+  border: none;
+}
 .evaluation__html-pc {
   border: 1px solid #b7b7b7;
 }
@@ -49,4 +60,8 @@
   border: none;
   line-height: 31px;
   border-radius: 0;
+}
+.evaluation__html.isfocus {
+  position: fixed;
+  border-top: 1px solid #f5f5f5;
 }

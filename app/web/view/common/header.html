@@ -10,13 +10,15 @@
 <div class="web__header clearfix">
   <div class=" web__content clearfix">
     <div class="web__header-logo">
-      <a href="/"><img src="/web/image/logo4.png" alt="logo"></a>
+      <a href="/"><img src="/common/image/logo.png" alt="logo"></a>
     </div>
     <ul class="web__header-list">
       {volist name="headerMap" id="item"}
       <li class="web__header-list-item {if condition='$item.key === $pathIndex'}active{/if}">
-        <div class="web__header-list-item-icon"><i class="iconfont {$item.icon}"></i></div>
-        <a href="/news/{$item.key}.html">{$item.name}</a>
+        <a href="/news/{$item.key}.html">
+          <div class="web__header-list-item-icon"><i class="iconfont {$item.icon}"></i></div>
+          <span>{$item.name}</span>
+        </a>
       </li>
       {/volist}
     </ul>
@@ -38,9 +40,9 @@
       <div class="web__header-right-item2 item item2">
          <span class="nick">{$userInfo.nickname}</span>
          <div class="user-mune">
-            <a href="{:url('/admin/index')}">
+            <!-- <a href="{:url('/admin/index')}">
               个人中心
-            </a>
+            </a> -->
             <a onclick="loginOut()">
               退出
             </a>
@@ -48,7 +50,7 @@
       </div>
       
     </div>
-    <div class="web__header-motal"></div>
+    <div class="web__header-motal"><div class="bar"></div></div>
   </div>
 </div>
 <script>

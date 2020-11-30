@@ -1,4 +1,13 @@
 .evaluation__html {
+  position: absolute;
+   bottom:0px;
+   left: 0px;
+   width: 100%;
+   padding: 20px;
+   box-sizing: border-box;
+   background: #fff;
+   z-index: 999;
+   border: none;
   &-pc{
     border: 1px solid #b7b7b7;
     &-box{
@@ -52,5 +61,10 @@
         border-radius: 0;
       }
     }
+  }
+  &.isfocus{
+    position: fixed;
+   
+    border-top: 1px solid #f5f5f5;
   }
 }

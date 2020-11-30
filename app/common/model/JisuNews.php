@@ -26,12 +26,12 @@ class JisuNews extends Model
     if($params['title']){
       $where['title'] = ['like','%'.$params['title'].'%'];
     }
-    $rows = $rows->where($where)->order('time', 'desc')->paginate($params['pageSize'] , false, ['page' => $params['page']]);
+    $rows = $rows->where($where)->order('time', 'desc')->field(['time', 'content', 'title', 'channel', 'pic', 'covers', 'des', 'id', 'src', 'browse'])->paginate($params['pageSize'] , false, ['page' => $params['page']]);
     $list = $rows->items();
 
     foreach ($list as $k => $v) {
       $list[$k]['des'] = getDescriptionFromContent($rows[$k]['content'], 150);
-      $list[$k]['time'] = date("Y-m-d", strtotime($v['time']));
+      $list[$k]['time'] = date("yy-m-d", strtotime($v['time']));
 
       $imgurl = 'https://n.sinaimg.cn/default/2fb77759/20151125/320X320.png';
       if($list[$k]['covers']){
@@ -43,8 +43,6 @@ class JisuNews extends Model
       }
       $list[$k]['category'] = getChannel($v['channel']);
       $list[$k] = array_remove($list[$k], 'content');
-      $list[$k] = array_remove($list[$k], 'weburl');
-      $list[$k] = array_remove($list[$k], 'url');
     }
     $data =  [
       'total' => $rows->total(),
@@ -63,10 +61,9 @@ class JisuNews extends Model
     if($channel){
       $rows = $rows->where("channel", $channel);
     }
-   $rows= $rows->order('time', 'desc')->limit($limit)->select();
+   $rows= $rows->order('time', 'desc')->field(['time','title','channel','pic','id','src','browse'])->limit($limit)->select();
     foreach ($rows as $k => $v) {
-      $rows[$k]['des'] = $rows[$k]['des'] ? $rows[$k]['des'] : getDescriptionFromContent($rows[$k]['content'], 150);
-      $rows[$k]['time'] = date('y-m-d', strtotime($v['time']));
+      $rows[$k]['time'] = date('yy-m-d', strtotime($v['time']));
       $rows[$k]['key'] = getChannel($v['channel']);
     }
     return $rows;
@@ -75,7 +72,6 @@ class JisuNews extends Model
   public function setNewsList()
   {
     $list = model('Cate')->list();
-    array_splice($list,0,1);
     foreach ($list as $k => $v) {
       $name = $v['name'];
       $length = $v['length'];
@@ -170,5 +166,9 @@ class JisuNews extends Model
     $row = $detail->allowField(true)->save();
     if($row) return 1;
   }
+  // 网站地图使用
+  public function sitemap($page=1 ,$pageSize =10){
+    $row = model('JisuNews')->order('time','desc')->field(['time','title','channel','id'])->paginate($pageSize , false, ['page' => $page]);
+    return $row->items();
+  }
 }
-// 炼金术士 ,时光守护者,玛尔扎哈,猩红收割者,暗夜猎手,众星之子,赏金猎人

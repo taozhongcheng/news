@@ -13,9 +13,6 @@ class Base extends Controller
     $isMobile = $this->request->isMobile();
     // 头部菜单配置
     $header = model('Cate')->list();
-    if (!$isMobile) {
-      array_splice($header, 0, 1);
-    }
     // 右侧头条看点
     $hotList = model('JisuNews')->setHotList();
     // 友情链接
@@ -33,5 +30,11 @@ class Base extends Controller
       'userInfo' => session("userInfo"),
     ];
     $this->view->share($viewData);
+
+    // 黑名单拦截
+    $ip = $this->request->ip();
+    if (strstr($ip, '36.99.136.1')) {
+      $this->redirect('https://www.baidu.com');
+    }
   }
 }

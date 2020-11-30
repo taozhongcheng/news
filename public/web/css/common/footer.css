@@ -53,6 +53,9 @@
   color: #fff;
   box-sizing: border-box;
 }
+.footer__bottom-record a {
+  color: #fff;
+}
 .footer__bottom-record .map {
   position: absolute;
   right: 12px;

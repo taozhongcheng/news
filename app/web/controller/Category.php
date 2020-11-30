@@ -17,8 +17,8 @@ class Category extends Base
       $seo = config("seo");
       $this->assign(['seo' => $seo[$path], 'pathIndex' => $path]);
     } else {
-      $channel = '推荐';
-      $this->assign('pathIndex', 'push');
+      $channel = '头条';
+      $this->assign('pathIndex', 'hot');
     }
 
     $this->assign('channel', $channel);
