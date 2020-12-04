@@ -26,30 +26,31 @@ class JisuNews extends Model
     if($params['title']){
       $where['title'] = ['like','%'.$params['title'].'%'];
     }
-    $rows = $rows->where($where)->order('time', 'desc')->field(['time', 'content', 'title', 'channel', 'pic', 'covers', 'des', 'id', 'src', 'browse'])->paginate($params['pageSize'] , false, ['page' => $params['page']]);
-    $list = $rows->items();
-
+    $count = model('jisu_news')->where($where)->count();
+    $list = $rows->where($where)->order('time', 'desc')
+    ->field(['time', 'title', 'channel', 'pic', 'covers', 'des', 'id','is_edit', 'src', 'browse'])
+    ->limit(($params['page'] - 1)*10, $params['pageSize'])->select();
+   
     foreach ($list as $k => $v) {
-      $list[$k]['des'] = getDescriptionFromContent($rows[$k]['content'], 150);
+      $list[$k]['des'] = $list[$k]['des'] ? $list[$k]['des'] :'';
       $list[$k]['time'] = date("yy-m-d", strtotime($v['time']));
-
       $imgurl = 'https://n.sinaimg.cn/default/2fb77759/20151125/320X320.png';
-      if($list[$k]['covers']){
+      
+     if($list[$k]['covers']){
         $list[$k]['covers'] = explode(',', $list[$k]['covers']);
+     } 
+     else if (!$list[$k]['is_edit'] && $list[$k]['pic'] !== $imgurl) {
+        $list[$k]['covers'] = [$list[$k]['pic']];
       }else{
-        $covers = get_images_from_html($v['content']);
-        $list[$k]['pic'] === $imgurl ? '': array_unshift($covers, $v['pic']);
-        $list[$k]['covers'] = $covers;
+        $list[$k]['covers'] = [];
       }
       $list[$k]['category'] = getChannel($v['channel']);
-      $list[$k] = array_remove($list[$k], 'content');
     }
     $data =  [
-      'total' => $rows->total(),
+      'total' =>  $count,
       'list' => $list,
-      'currentPage' => $rows->currentPage(),
-      'lastPage' => $rows->lastPage(),
-      // 'paginator' => $rows->render()
+      'currentPage' => $params['page'],
+      'lastPage' => ceil($count/$params['pageSize'])
     ];
 
     return $data;
@@ -96,7 +97,7 @@ class JisuNews extends Model
     if ($divNum % 2) {
       $row['content'] = '<div>' . $row['content'];
     }
-    $row['des'] = $row['des']? $row['des'] : getDescriptionFromContent($row['content'],150);
+    $row['des'] = $row['des']? $row['des'] : '';
     $row['time'] = date('y-m-d', strtotime($row['time']));
     
     //
@@ -112,19 +113,19 @@ class JisuNews extends Model
   }
 
   //相关新闻查询
-  public function getRelatedNews($channel = "头条", $id,$key)
+  public function getRelatedNews($channel = "头条", $id)
   {
     $row = model('JisuNews');
     if ($channel !== "推荐") {
       $row = $row->where("channel", $channel);
     };
     $row = $row->where("id != $id")
+     ->field(['time', 'title', 'channel', 'pic','src','id', 'browse'])
       ->order('time', 'desc')
       ->limit(3)
       ->select();
     foreach ($row as $k => $v) {
-      $row[$k]['des'] =getDescriptionFromContent($v['content'], 150);
-      $row[$k]['key'] =  $key;
+      $row[$k]['key'] = getChannel($v['channel']);
     }
     return $row;
   }

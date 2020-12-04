@@ -1,8 +1,0 @@
-status = dev
-
-
-[database]
-username = root
-password = root
-hostname = 47.111.83.64
-name = news

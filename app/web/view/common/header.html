@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-09 09:30:50
- * @LastEditTime: 2020-11-09 10:24:25
+ * @LastEditTime: 2020-12-02 14:27:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /news/app/web/view/common/header.html
@@ -16,8 +16,10 @@
       {volist name="headerMap" id="item"}
       <li class="web__header-list-item {if condition='$item.key === $pathIndex'}active{/if}">
         <a href="/news/{$item.key}.html">
-          <div class="web__header-list-item-icon"><i class="iconfont {$item.icon}"></i></div>
-          <span>{$item.name}</span>
+          <div onclick="sessionStorage.removeItem('ACTIVE_TYPE');">
+            <div class="web__header-list-item-icon"><i class="iconfont {$item.icon}"></i></div>
+            <span>{$item.name}</span>
+          </div>
         </a>
       </li>
       {/volist}

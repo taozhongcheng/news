@@ -53,13 +53,16 @@
   color: #fff;
   box-sizing: border-box;
 }
+.footer__bottom-record .item {
+  padding: 5px 0;
+}
 .footer__bottom-record a {
   color: #fff;
 }
 .footer__bottom-record .map {
   position: absolute;
   right: 12px;
-  top: 20px;
+  bottom: 20px;
   color: #fff;
 }
 .footer__bottom-record .map::before {

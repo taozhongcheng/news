@@ -46,6 +46,9 @@
   font-size: 18px;
   height: 100%;
 }
+.web__header-list-item a > div {
+  display: inline-block;
+}
 .web__header-list-item.active a {
   color: #FFA500;
 }
