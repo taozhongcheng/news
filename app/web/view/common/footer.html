@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-04 09:49:22
- * @LastEditTime: 2020-12-01 14:15:28
+ * @LastEditTime: 2020-12-09 16:01:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp_news/app/web/view/pc/common/footer.html
@@ -13,7 +13,7 @@
     </div>
     <div class="footer__link-list">
       {volist name="linkList" id="item"}
-      <a href="/news/{$item.url}.html">{$item['name']}</a>
+      <a href="{$item.url}">{$item['name']}</a>
       {/volist}
     </div>
   </div>

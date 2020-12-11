@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-27 18:25:02
- * @LastEditTime: 2020-12-01 14:05:47
+ * @LastEditTime: 2020-12-09 17:58:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /thinkphp/conf/config.php
@@ -11,7 +11,6 @@
 use think\Env;
 return [
    'version' => 'v1.0.4',//time(),
-   'app_status' => Env::get('status','pro'),
    // 开启路由
    'url_route_on' => true,
    // 必须对应路由
